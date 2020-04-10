@@ -2,97 +2,51 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 
 function Header() {
+  const [state, setState] = useState({
+    isLoaded: false,
+  });
+
   useEffect(() => {
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/27`
-    )
+    fetch("http://localhost:4020/")
       .then((response) => {
         return response.json();
       })
       .then((result) => {
-        console.log(result);
+        setState({ isLoaded: true, data: result.data });
       });
   }, []);
-  return <p>Header</p>;
-}
-export default Header;
-/*
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      data: [],
-      data2: [],
-      data3: [],
-      data4: []
-    };
-  }
 
-  async componentDidMount() {
-    const url = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/27`;
-    await Axios.get(url).then(response => {
-      this.setState({
-        isLoaded: true,
-        data: response.data
-      });
-    });
-    const url2 = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/29`;
-    await Axios.get(url2).then(response => {
-      this.setState({
-        isLoaded: true,
-        data2: response.data
-      });
-    });
-    const url3 = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/30`;
-    await Axios.get(url3).then(response => {
-      this.setState({
-        isLoaded: true,
-        data3: response.data
-      });
-    });
-  }
-
-  render() {
-    const { data, data2, data3 } = this.state;
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
+      {state.isLoaded === false ? null : (
         <div className="flex-containerHeader">
           <div className="Header1">
-            <a href={data.link} target="_blank" rel="noopener noreferrer">
-              <img
-                src={data.picture_medium}
-                className="img-thumbnail"
-                alt=""
-                id="box"
-              />
-            </a>
+            <img
+              src={state.data[0].picture_medium}
+              className="img-thumbnail"
+              alt=""
+              id="box"
+            />
           </div>
           <div className="Header2">
-            <a href={data2.link} target="_blank" rel="noopener noreferrer">
-              <img
-                src={data2.picture_medium}
-                className="img-thumbnail"
-                alt=""
-                id="box"
-              />
-            </a>
+            <img
+              src={state.data[1].picture_medium}
+              className="img-thumbnail"
+              alt=""
+              id="box"
+            />
           </div>
           <div className="Header3">
-            <a href={data3.link} target="_blank" rel="noopener noreferrer">
-              <img
-                src={data3.picture_medium}
-                className="img-thumbnail"
-                alt=""
-                id="box"
-              />
-            </a>
+            <img
+              src={state.data[2].picture_medium}
+              className="img-thumbnail"
+              alt=""
+              id="box"
+            />
           </div>
         </div>
-      </React.Fragment>
-    );
-  }
+      )}
+    </React.Fragment>
+  );
 }
-
 export default Header;
-*/
