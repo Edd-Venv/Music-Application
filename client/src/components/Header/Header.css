@@ -1,0 +1,254 @@
+.flex-containerHeader {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 80%;
+  min-width: 50%;
+}
+/* START OF HEADER ANIMATIONS*/
+@keyframes header1 {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 23.5%;
+  }
+}
+@keyframes header2 {
+  from {
+    left: 10%;
+  }
+  to {
+    left: 45%;
+  }
+}
+@keyframes header3 {
+  from {
+    right: 0%;
+  }
+  to {
+    right: 23%;
+  }
+}
+
+/* END OF HEADER ANIMATIONS*/
+img {
+  width: 100%;
+}
+.Header1 {
+  min-width: 60px;
+  width: 20.5%;
+  position: sticky;
+  animation-name: header1;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  z-index: 1;
+}
+.Header2 {
+  min-width: 60px;
+  width: 20.5%;
+  position: sticky;
+  animation-name: header2;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  z-index: 1;
+}
+.Header3 {
+  min-width: 60px;
+  width: 20.5%;
+  position: sticky;
+  animation-name: header3;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: -0.5s;
+  z-index: 1;
+}
+/*From a minimum width and bigger*/
+@media (min-width: 320px) {
+  .Header1 {
+    width: 25.5%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 40%;
+    }
+  }
+  .Header2 {
+    width: 25.5%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 25.5%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
+}
+@media (min-width: 375px) {
+}
+@media (min-width: 425px) {
+}
+@media (min-width: 768px) {
+  .Header1 {
+    width: 22.5%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 41%;
+    }
+  }
+  .Header2 {
+    width: 22.5%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 22.5%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .Header1 {
+    width: 20.5%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 41.5%;
+    }
+  }
+  .Header2 {
+    width: 20.5%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 20.5%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .Header1 {
+    width: 20.5%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 42.8%;
+    }
+  }
+  .Header2 {
+    width: 20.5%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 20.5%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
+}
+@media (min-width: 2560px) {
+  .Header1 {
+    width: 23.5%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 45.5%;
+    }
+  }
+  .Header2 {
+    width: 23.5%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 23.5%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
+}
