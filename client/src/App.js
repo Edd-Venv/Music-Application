@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Router, navigate } from "@reach/router";
-import Header from "./components/Header/Header.js";
-import Search from "./components/Search/Search.js";
+import Settings from "./nav/Settings/Settings.js";
+import Register from "./nav/Register/Register.js";
+import Login from "./nav/Login/Login.js";
+import MusicApp from "./MusicApp.js";
 import "./App.css";
+import MySongs from "./components/MySongs/MySongs.js";
 
 export const UserContext = React.createContext([]);
 
@@ -41,41 +44,15 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        maxWidth: "1200px",
-        minWidth: "50%",
-        margin: "0 auto",
-      }}
-    >
-      {loading ? (
-        <div
-          className="spinner-grow text-dark"
-          role="status"
-          style={{ margin: "auto" }}
-        >
-          <span className="sr-only">Loading...</span>
-        </div>
-      ) : (
-        <React.Fragment>
-          <Search />
-          <br />
-          <h2
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: "bolder",
-              textAlign: "center",
-              color: "white",
-            }}
-          >
-            CURRENT TOP THREE ARTISTS
-            <hr style={{ width: "22%", margin: "0 auto" }} />
-          </h2>
-          <br />
-          <Header />
-        </React.Fragment>
-      )}
-    </div>
+    <UserContext.Provider value={[user, setUser]}>
+      <Router id="router">
+        <Settings path="/settings" logOutCallback={logOutCallback} />
+        <Login path="/login" />
+        <Register path="/register" />
+        <MusicApp path="/" loading={loading} logOutCallback={logOutCallback} />
+        <MySongs path="/MySongs" logOutCallback={logOutCallback} />
+      </Router>
+    </UserContext.Provider>
   );
 }
 
