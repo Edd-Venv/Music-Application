@@ -45,7 +45,6 @@ img {
   animation-timing-function: ease;
   animation-fill-mode: forwards;
   animation-delay: -0.5s;
-  z-index: 1;
 }
 .Header2 {
   min-width: 60px;
@@ -57,7 +56,6 @@ img {
   animation-timing-function: ease;
   animation-fill-mode: forwards;
   animation-delay: -0.5s;
-  z-index: 1;
 }
 .Header3 {
   min-width: 60px;
@@ -69,7 +67,6 @@ img {
   animation-timing-function: ease;
   animation-fill-mode: forwards;
   animation-delay: -0.5s;
-  z-index: 1;
 }
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
