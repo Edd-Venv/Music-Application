@@ -1,10 +1,51 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./SearchResult.css";
+import { UserContext } from "../../App.js";
 import AudioPlayer from "react-h5-audio-player";
 
 function SearchResult(props) {
+  const [user] = useContext(UserContext);
+  const [state, setState] = useState({ key: 0, message: "" });
   const { results, handleClose } = props;
-  console.log("results", results);
+
+  async function saveSong(Args) {
+    if (!user.accesstoken) return console.log("You need to login to Save.");
+    else {
+      const result = await (
+        await fetch("http://localhost:4020/search/saveSong", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user.accesstoken}`,
+          },
+          body: JSON.stringify({
+            song_key: Args[0],
+            artist_name: Args[1],
+            artist_image: Args[2],
+            song_title: Args[3],
+            album_title: Args[4],
+            explicit_lyrics: Args[5],
+            song: Args[6],
+          }),
+        })
+      ).json();
+
+      if (!result.error) {
+        setState({ key: result.key, message: result.message });
+      } else {
+        setState({ message: result.error });
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (state.message !== "") {
+      setTimeout(() => {
+        setState({ key: 0, message: "" });
+      }, 3000);
+    }
+  }, [state]);
+
   return (
     <React.Fragment>
       <br />
@@ -26,54 +67,81 @@ function SearchResult(props) {
           <br />
           <br />
           <div className="search-results-container">
-            {results.map((result) => {
-              return (
+            {results[0].DummyData ? (
+              <div className="">
                 <div
-                  className="card mb-3"
-                  key={result.id}
-                  style={{ width: "85%" }}
-                  id="search-result-item"
+                  className="spinner-grow text-dark"
+                  role="status"
+                  style={{ margin: "0 auto" }}
                 >
-                  <div className="row no-gutters">
-                    <div id="artist-image">
-                      <img
-                        src={result.artist.picture_xl}
-                        style={{ width: "100%" }}
-                        className="img-thumbnail"
-                        alt="..."
-                      />
-                    </div>
-                    <div className="col-md-4" style={{ width: "30%" }}>
-                      <AudioPlayer
-                        volume="0.5"
-                        layout="stacked"
-                        src={result.preview}
-                        control="false"
-                      />
-                    </div>
-                    <div className="col-md-8">
-                      <div className="card-body" id="search-result-font">
-                        <h5 className="card-title">
-                          <big>
-                            <strong>{result.artist.name}</strong>
-                          </big>
-                        </h5>
-                        <div className="card-text">
-                          <p>Song: {result.title}</p>
-                          <p>Album: {result.album.title}</p>
-                          <p>
-                            <small className="text-muted">
-                              Explicit Lyrics:{" "}
-                              {result.explicit_lyrics === true ? "Yes" : "No"}
-                            </small>
-                          </p>
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              results.map((result) => {
+                return (
+                  <div
+                    className="card mb-3"
+                    key={result.id}
+                    style={{ width: "85%" }}
+                    id="search-result-item"
+                  >
+                    <div className="row no-gutters">
+                      <div id="artist-image">
+                        <img
+                          src={result.artist.picture_xl}
+                          style={{ width: "100%" }}
+                          className="img-thumbnail"
+                          alt="..."
+                        />
+                      </div>
+                      <div className="col-md-4" style={{ width: "30%" }}>
+                        <AudioPlayer
+                          volume="0.5"
+                          layout="stacked"
+                          src={result.preview}
+                          control="false"
+                        />
+                      </div>
+                      <div className="col-md-8">
+                        <div className="card-body" id="search-result-font">
+                          <h5 className="card-title">
+                            <big>
+                              <strong>{result.artist.name}</strong>
+                            </big>
+                          </h5>
+                          <div className="card-text">
+                            <p>Song: {result.title}</p>
+                            <p>Album: {result.album.title}</p>
+                            <p>
+                              <small className="text-muted">
+                                Explicit Lyrics:{" "}
+                                {result.explicit_lyrics === true ? "Yes" : "No"}
+                              </small>
+                            </p>
+                            <button
+                              className="btn btn-primary"
+                              onClick={saveSong.bind(this, [
+                                result.id,
+                                result.artist.name,
+                                result.artist.picture_xl,
+                                result.title,
+                                result.album.title,
+                                result.explicit_lyrics,
+                                result.preview,
+                              ])}
+                            >
+                              save
+                            </button>
+                            {result.id === state.key ? state.message : null}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       )}

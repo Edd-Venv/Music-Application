@@ -1,7 +1,7 @@
 const initialState = {
-  DummyData: true,
   data: [
     {
+      DummyData: true,
       id: 350171311,
       readable: true,
       title: "HUMBLE.",
