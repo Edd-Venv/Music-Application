@@ -1,6 +1,38 @@
-.close {
+.search-results-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+}
+
+#search-result-item:hover {
+  box-shadow: 0px 1px 9px whitesmoke;
+  opacity: 0.8 grey;
+  transition: 0.2s;
+  transform: translate(1px, -5px);
+}
+#search-results-model {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 20px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.1); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  min-width: 60px;
+}
+#search-result-font {
+  font-size: 1.3rem;
+}
+#artist-image {
+  max-width: 70%;
+  min-width: 60px;
+}
+.search-results-close-button {
   position: absolute;
-  right: 35px;
+  right: 20px;
   color: red;
   font-size: 3em;
   font-weight: bold;
@@ -50,18 +82,17 @@
   border: 2px solid whitesmoke;
   width: 93%;
 }
-#search-result-font-size {
-  font-size: 1.3rem;
-}
+
 @media (min-width: 320px) {
-  .artists-image {
-    max-width: 65%;
-    min-width: 60px;
-    margin-left: 6.5%;
+  #artist-image {
+    max-width: 50vw;
+    margin-left: 3.3%;
   }
-  .search-result-container {
-    width: 75%;
+  #search-result-font {
+    font-size: 1.5rem;
+    margin-left: 1%;
   }
+
   .close {
     left: 85%;
   }
@@ -84,14 +115,15 @@
   }
 }
 @media (min-width: 375px) {
-  .artists-image {
-    max-width: 65%;
-    min-width: 60px;
-    margin-left: 5%;
+  #artist-image {
+    max-width: 50vw;
+    margin-left: 3.3%;
   }
-  .search-result-container {
-    width: 75%;
+  #search-result-font {
+    font-size: 1.7rem;
+    margin-left: 1%;
   }
+
   .close {
     left: 85%;
   }
@@ -100,22 +132,21 @@
     border: 2px solid whitesmoke;
     width: 90%;
   }
-  #search-result-font-size {
-    font-size: 1.25rem;
-  }
+
   .close-error {
     right: 100px;
   }
 }
 @media (min-width: 425px) {
-  .artists-image {
-    max-width: 65%;
-    min-width: 60px;
-    margin-left: 4.3%;
+  #artist-image {
+    max-width: 50vw;
+    margin-left: 3.3%;
   }
-  .search-result-container {
-    width: 75%;
+  #search-result-font {
+    font-size: 1.7rem;
+    margin-left: 1%;
   }
+
   .close {
     left: 87%;
   }
@@ -124,21 +155,19 @@
     border: 2px solid whitesmoke;
     width: 91%;
   }
-  #search-result-font-size {
-    font-size: 1.3rem;
-  }
+
   .close-error {
     right: 130px;
   }
 }
 @media (min-width: 768px) {
-  .artists-image {
-    max-width: 100%;
-    min-width: 60px;
-    margin-left: 6.5%;
+  #artist-image {
+    max-width: 26vw;
+    margin-left: 2.5%;
   }
-  .search-result-container {
-    width: 75%;
+  #search-result-font {
+    font-size: 1.7rem;
+    margin-left: 1%;
   }
   .close {
     left: 92%;
@@ -148,9 +177,7 @@
     border: 2px solid whitesmoke;
     width: 93.5%;
   }
-  #search-result-font-size {
-    font-size: 1.33rem;
-  }
+
   .close-error {
     right: 300px;
     top: 43.5%;
@@ -161,13 +188,13 @@
   }
 }
 @media (min-width: 1024px) {
-  .artists-image {
-    max-width: 100%;
-    min-width: 60px;
-    margin-left: 6.5%;
+  #artist-image {
+    max-width: 13.5vw;
+    margin-left: 3.3%;
   }
-  .search-result-container {
-    width: 75%;
+  #search-result-font {
+    font-size: 1.7rem;
+    margin-left: 1%;
   }
   .close {
     left: 94%;
@@ -177,9 +204,7 @@
     border: 2px solid whitesmoke;
     width: 95.5%;
   }
-  #search-result-font-size {
-    font-size: 1.8rem;
-  }
+
   .close-error {
     right: 400px;
     top: 20.5%;
@@ -190,13 +215,13 @@
   }
 }
 @media (min-width: 1440px) {
-  .artists-image {
-    max-width: 100%;
-    min-width: 60px;
-    margin-left: 5.5%;
+  #artist-image {
+    max-width: 12vw;
+    margin-left: 3.3%;
   }
-  .search-result-container {
-    width: 75%;
+  #search-result-font {
+    font-size: 1.7rem;
+    margin-left: 1%;
   }
   .close {
     left: 95%;

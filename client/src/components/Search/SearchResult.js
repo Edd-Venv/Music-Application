@@ -2,89 +2,103 @@ import React from "react";
 import "./SearchResult.css";
 import AudioPlayer from "react-h5-audio-player";
 
-class SearchResult extends React.Component {
-  render() {
-    const {
-      search,
-      display,
-      stopAudio,
-      Test,
-      Video,
-      buttonDisplay,
-      displayAudioPlayer,
-      handleClick,
-      handleButtonClick
-    } = this.props;
-    return (
-      <div className={display}>
-        <br />
-        {search === undefined ? (
-          <div>
-            <p className="error-paragraph">
-              ARTIST NOT IN DATABASE
-              <i onClick={handleClick} className="close-error">
-                ×
-              </i>
-            </p>
+function SearchResult(props) {
+  const { results, handleClose } = props;
+  console.log("results", results);
+  return (
+    <React.Fragment>
+      <br />
+      {results === undefined ? (
+        <div>
+          <p className="error-paragraph">
+            ARTIST NOT IN DATABASE
+            <i onClick={handleClose} className="close-error">
+              ×
+            </i>
+          </p>
+        </div>
+      ) : (
+        <div id="search-results-model">
+          <div onClick={handleClose} className="search-results-close-button">
+            ×
           </div>
-        ) : (
-          <div className="search-result-container">
-            <div className="card mb-3" key={search.id} id="boxSearcher">
-              <span onClick={handleClick} className="close">
-                ×
-              </span>
-              <div className="row no-gutters">
-                <div className="col-md-4">
-                  <div className="artists-image">
-                    <img
-                      src={search.artist.picture_xl}
-                      className="img-thumbnail"
-                      alt="..."
-                    />
+          <br />
+          <br />
+          <br />
+          <div className="search-results-container">
+            {results.map((result) => {
+              return (
+                <div
+                  className="card mb-3"
+                  key={result.id}
+                  style={{ width: "85%" }}
+                  id="search-result-item"
+                >
+                  <div className="row no-gutters">
+                    <div id="artist-image">
+                      <img
+                        src={result.artist.picture_xl}
+                        style={{ width: "100%" }}
+                        className="img-thumbnail"
+                        alt="..."
+                      />
+                    </div>
+                    <div className="col-md-4" style={{ width: "30%" }}>
+                      <AudioPlayer
+                        volume="0.5"
+                        layout="stacked"
+                        src={result.preview}
+                        control="false"
+                      />
+                    </div>
+                    <div className="col-md-8">
+                      <div className="card-body" id="search-result-font">
+                        <h5 className="card-title">
+                          <big>
+                            <strong>{result.artist.name}</strong>
+                          </big>
+                        </h5>
+                        <div className="card-text">
+                          <p>Song: {result.title}</p>
+                          <p>Album: {result.album.title}</p>
+                          <p>
+                            <small className="text-muted">
+                              Explicit Lyrics:{" "}
+                              {result.explicit_lyrics === true ? "Yes" : "No"}
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-8" style={{ paddingLeft: "13px" }}>
-                  <div className="card-body" id="search-result-font-size">
-                    <h5 className="card-title">
-                      <big>
-                        <strong>{search.artist.name}</strong>
-                      </big>
-                    </h5>
-                    <div className="card-text">
-                      <p>Song: {search.title}</p>
-                      <p>Album: {search.album.title}</p>
-                      <p>
-                        <small className="text-muted">
-                          Explicit Lyrics:{" "}
-                          {search.explicit_lyrics === true ? "Yes" : "No"}
-                        </small>
-                      </p>
-                    </div>
-                    <React.Fragment>
-                      <div className={buttonDisplay}>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </React.Fragment>
+  );
+}
+
+export default SearchResult;
+/*
+
+ <div className={buttonDisplay}>
                         <button
                           className="btn btn-dark"
                           type="submit"
                           style={{
                             width: "50px",
-                            marginLeft: "0%"
+                            marginLeft: "0%",
                           }}
                           onClick={handleButtonClick}
                         >
                           <i className="fab fa-google-play" />
                         </button>
                       </div>
-                      <div className={displayAudioPlayer}>
-                        <AudioPlayer
-                          src={search.preview}
-                          controls
-                          volume={parseInt(stopAudio)}
-                        />
-                      </div>
-                    </React.Fragment>
-                  </div>
-                </div>
-                {Test === "unknown" ? (
+
+{Test === "unknown" ? (
                   <p
                     style={{
                       fontSize: "1.2em",
@@ -114,13 +128,4 @@ class SearchResult extends React.Component {
                     />
                   </React.Fragment>
                 )}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
-
-export default SearchResult;
+*/
