@@ -285,6 +285,27 @@ server.get("/", async (req, res) => {
   }
 });
 
+//SEARCH DATA
+
+server.post("/search", async (req, res) => {
+  const firstApi = `https://api.deezer.com/search?q=${req.body.search_text}`;
+  const secondApi = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=music&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
+
+  try {
+    const exists = Cache.has(`${req.body.search_text}`);
+    if (exists) {
+      res.json({ data: Cache.get(`${req.body.search_text}`) });
+    } else {
+      const firstResult = await (await fetch(firstApi)).json();
+      const secondResult = await (await fetch(secondApi)).json();
+      const finalResult = [firstResult, secondResult];
+      Cache.set(`${req.body.search_text}`, finalResult, 691200);
+      res.json({ data: finalResult });
+    }
+  } catch (error) {
+    res.json({ error: error });
+  }
+});
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 server.listen(process.env.PORT, () =>
