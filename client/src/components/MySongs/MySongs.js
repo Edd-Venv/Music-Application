@@ -6,7 +6,9 @@ import "./MySongs.css";
 
 const MySongs = (props) => {
   const [user] = useContext(UserContext);
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState({
+    buttonDisplay: "DisplayButtonShow",
+  });
 
   async function fetchSongs() {
     const result = await (
@@ -19,7 +21,8 @@ const MySongs = (props) => {
       })
     ).json();
 
-    if (result.data) setContent([result.data]);
+    if (result.data)
+      setContent({ buttonDisplay: "DisplayButtonShow", data: result.data });
   }
 
   useEffect(() => {
@@ -45,6 +48,31 @@ const MySongs = (props) => {
       console.log(error);
     }
   }
+  async function buttonUI(Args) {
+    const result = await (
+      await fetch("http://localhost:4020/buttonUI", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          song_key: Args[0],
+          ui_button_click: Args[1],
+        }),
+      })
+    ).json();
+
+    if (!result.error) {
+      setContent({
+        ...content,
+        key: result.key,
+        uiButtonClick: result.uiButtonClick,
+        buttonDisplay: "DisplayButtonShow",
+      });
+    } else {
+      console.log("message", result.error);
+    }
+  }
 
   return (
     <React.Fragment>
@@ -54,7 +82,7 @@ const MySongs = (props) => {
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You need to login.
         </h2>
-      ) : user.accesstoken && content[0] === undefined ? (
+      ) : user.accesstoken && content.data === undefined ? (
         <div
           className="spinner-grow text-dark"
           role="status"
@@ -62,13 +90,13 @@ const MySongs = (props) => {
         >
           <span className="sr-only">Loading...</span>
         </div>
-      ) : user.accesstoken && content[0].length === 0 ? (
+      ) : user.accesstoken && content.data.length === 0 ? (
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You Don't Have Songs Saved.
         </h2>
       ) : (
         <div className="my-songs-container">
-          {content[0].map((info) => {
+          {content.data.map((info) => {
             return (
               <div
                 className="card mb-3 gird-card-size"
@@ -85,12 +113,22 @@ const MySongs = (props) => {
                     />
                   </div>
                   <div className="col-md-4" style={{ width: "30%" }}>
-                    <AudioPlayer
-                      volume="0.5"
-                      layout="stacked"
-                      src={info.song}
-                      control="false"
-                    />
+                    {info.song_key === content.key &&
+                    content.uiButtonClick === true ? (
+                      <div className="top-4-tracks-audio-player">
+                        <AudioPlayer src={info.song} volume="0.5" controls />
+                      </div>
+                    ) : (
+                      <div className={content.buttonDisplay}>
+                        <button
+                          className="btn btn-dark"
+                          type="submit"
+                          onClick={buttonUI.bind(this, [info.song_key, true])}
+                        >
+                          <i className="fab fa-google-play" />
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div className="col-md-8">
                     <div className="card-body" style={{ marginLeft: "2%" }}>
