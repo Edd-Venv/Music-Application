@@ -1,0 +1,129 @@
+/* START OF HIDE PLAY BUTTON*/
+div.DisplayButtonShow {
+  display: block;
+}
+div.DisplayButtonHide {
+  display: none;
+}
+
+.top-4-tracks-container {
+  max-width: 28%;
+  font-size: 1.2rem;
+}
+.top-4-tracks-image-container {
+  min-width: 60px;
+  width: 85%;
+}
+/*START OF BOX STYLING*/
+#box:hover {
+  box-shadow: 0px 1px 9px whitesmoke;
+  opacity: 0.8 grey;
+  transition: 0.2s;
+  max-width: 300px;
+}
+#boxChart:hover {
+  box-shadow: 0px 1px 9px whitesmoke;
+  opacity: 0.8 grey;
+  transition: 0.2s;
+  max-width: 500px;
+}
+#boxSearch:hover {
+  box-shadow: 0px 1px 9px whitesmoke;
+  opacity: 0.8 grey;
+  transition: 0.2s;
+  max-width: 700px;
+}
+/*END OF BOX STYLING*/
+@media (min-width: 320px) {
+  .top-4-tracks-image-container {
+    min-width: 60px;
+    width: 77%;
+    margin-left: 12%;
+  }
+  .top-4-tracks-container {
+    max-width: 35%;
+    font-size: 1.2rem;
+  }
+  #top-4-tracks-button {
+    width: 50px;
+    margin-left: 0%;
+  }
+}
+@media (min-width: 375px) {
+  .top-4-tracks-image-container {
+    min-width: 60px;
+    width: 81%;
+    margin-left: 10%;
+  }
+  .top-4-tracks-container {
+    max-width: 35%;
+    font-size: 1.3rem;
+  }
+  #top-4-tracks-button {
+    width: 50px;
+    margin-left: 0%;
+  }
+}
+@media (min-width: 425px) {
+  .top-4-tracks-image-container {
+    min-width: 60px;
+    width: 82%;
+    margin-left: 9%;
+  }
+  .top-4-tracks-container {
+    max-width: 35%;
+    font-size: 1.35rem;
+  }
+  #top-4-tracks-button {
+    width: 50px;
+    margin-left: 0%;
+  }
+}
+@media (min-width: 768px) {
+  .top-4-tracks-image-container {
+    min-width: 60px;
+    width: 100%;
+    margin-left: 15%;
+  }
+  .top-4-tracks-container {
+    max-width: 35%;
+    font-size: 1.35rem;
+  }
+  #top-4-tracks-button {
+    width: 50px;
+    margin-left: 0%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .top-4-tracks-image-container {
+    min-width: 60px;
+    width: 100%;
+    margin-left: 15%;
+  }
+  .top-4-tracks-container {
+    max-width: 35%;
+    font-size: 1.45rem;
+  }
+  #top-4-tracks-button {
+    width: 50px;
+    margin-left: 0%;
+  }
+}
+@media (min-width: 1440px) {
+  .top-4-tracks-image-container {
+    min-width: 60px;
+    width: 100%;
+    margin-left: 15%;
+  }
+  .top-4-tracks-container {
+    max-width: 35%;
+    font-size: 1.6rem;
+  }
+  #top-4-tracks-button {
+    width: 50px;
+    margin-left: 0%;
+  }
+}
+@media (min-width: 2560px) {
+}

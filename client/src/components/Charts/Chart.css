@@ -1,0 +1,7 @@
+.ChartsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 90%;
+  min-width: 40%;
+}
