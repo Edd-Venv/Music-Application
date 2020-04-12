@@ -2,24 +2,6 @@
   text-align: center;
 }
 
-/* START OF HIDE SEARCH*/
-div.show {
-  display: block;
-}
-div.hide {
-  display: none;
-}
-/* END OF HIDE SEARCH*/
-
-/* START OF HIDE PLAY BUTTON*/
-div.DisplayButtonShow {
-  display: block;
-}
-div.DisplayButtonHide {
-  display: none;
-}
-/* END OF HIDE PLAY BUTTON*/
-
 /* START OF HIDE DETAILS BUTTON*/
 div.displayDetailsShow {
   display: block;
@@ -28,10 +10,3 @@ div.displayDetailsHide {
   display: none;
 }
 /* END OF HIDE DETAILS BUTTON*/
-
-/*START OF FLEX BOXES */
-
-.search-result-conatiner {
-  width: 20%;
-  margin: 0 auto;
-}

@@ -2,13 +2,13 @@ import React from "react";
 import Header from "./components/Header/Header.js";
 import Search from "./components/Search/Search.js";
 import Navigation from "./nav/Navigation/Navigation.js";
+import Chart from "./components/Charts/Chart.js";
 
 function MusicApp(props) {
   return (
     <React.Fragment>
       <Navigation logOutCallback={props.logOutCallback} />
       <br />
-
       <div
         style={{
           maxWidth: "1200px",
@@ -41,6 +41,8 @@ function MusicApp(props) {
             </h2>
             <br />
             <Header />
+            <br />
+            <Chart />
           </React.Fragment>
         )}
       </div>
