@@ -1,0 +1,113 @@
+/*START OF BOX STYLING*/
+#box:hover {
+  box-shadow: 0px 1px 9px whitesmoke;
+  opacity: 0.8 grey;
+  transition: 0.2s;
+  max-width: 300px;
+}
+#boxChart:hover {
+  box-shadow: 0px 1px 9px whitesmoke;
+  opacity: 0.8 grey;
+  transition: 0.2s;
+  max-width: 500px;
+}
+
+/*END OF BOX STYLING*/
+.top-5-albums-image-container {
+  width: 85%;
+}
+#top-5-ablums-fonts {
+  margin-left: 3%;
+  font-size: 1.2rem;
+}
+img {
+  width: 100%;
+}
+.top-5-albums-container {
+  width: 5%;
+  font-size: 1.3rem;
+}
+@media (min-width: 320px) {
+  .top-5-albums-container {
+    width: 30%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.3rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    min-width: 60px;
+    width: 76%;
+    margin-left: 11%;
+  }
+}
+@media (min-width: 375px) {
+  .top-5-albums-container {
+    width: 30%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.35rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    min-width: 60px;
+    width: 78%;
+    margin-left: 11%;
+  }
+}
+@media (min-width: 425px) {
+  .top-5-albums-container {
+    width: 30%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.4rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    min-width: 60px;
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+@media (min-width: 768px) {
+  .top-5-albums-container {
+    width: 30%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.35rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    width: 100%;
+    margin-left: 17%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .top-5-albums-container {
+    width: 30%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.45rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    width: 100%;
+    margin-left: 17%;
+  }
+}
+@media (min-width: 1440px) {
+  .top-5-albums-container {
+    width: 30%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.6rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    width: 100%;
+    margin-left: 17%;
+  }
+}
+@media (min-width: 2560px) {
+}

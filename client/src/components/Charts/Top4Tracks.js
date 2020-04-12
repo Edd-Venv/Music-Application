@@ -70,7 +70,11 @@ function Top4Tracks(props) {
                       </p>
                       {track.id === state.key ? (
                         <div className="top-4-tracks-audio-player">
-                          <AudioPlayer src={track.preview} controls />
+                          <AudioPlayer
+                            src={track.preview}
+                            volume="0.5"
+                            controls
+                          />
                         </div>
                       ) : (
                         <div className={state.buttonDisplay}>
