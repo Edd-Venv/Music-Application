@@ -290,8 +290,8 @@ server.get("/", async (req, res) => {
           artists: charts.artists.data.slice(0, 7),
         },
       };
-      Cache.set("ApiData", { ...finalResult }, 691200);
-      res.json({ ...finalResult });
+      Cache.set("ApiData", { finalResult }, 691200);
+      res.json({ finalResult });
     }
   } catch (error) {
     res.json({ error: error });
@@ -311,6 +311,31 @@ server.post("/search", async (req, res) => {
       const firstResult = await (await fetch(firstApi)).json();
       const secondResult = await (await fetch(secondApi)).json();
       const finalResult = [firstResult, secondResult];
+
+      const songs = firstResult.data.slice(0, 6);
+      //get result song titles from first searchResult
+      const titles = [];
+      for (let i = 0; i < songs.length; i++) {
+        titles.push(`${songs[i].artist.name}` + " " + `${songs[i].title}`);
+      }
+
+      //perform a search for each title and get the youtubeVideoID
+      const videoIDs = [];
+      for (let i = 0; i < titles.length; i++) {
+        const googleApi = `https://www.googleapis.com/youtube/v3/search?q=${titles[i]}&part=snippet&key=AIzaSyCB3A6tR-JHZoGro-X6vCQx1JRDG9V7npY`;
+        const videoResult = await (await fetch(googleApi)).json();
+        videoIDs.push(videoResult.items[0].id.videoId);
+      }
+
+      const youtubeVideoLinks = [];
+      for (let i = 0; i < videoIDs.length; i++) {
+        let youtubeVideoLink = "https://www.youtube.com/watch?v=";
+        youtubeVideoLink += videoIDs[i];
+        youtubeVideoLinks.push(youtubeVideoLink);
+        youtubeVideoLink = "https://www.youtube.com/watch?v=";
+      }
+      console.log(youtubeVideoLinks);
+
       Cache.set(`${req.body.search_text}`, finalResult, 691200);
       res.json({ data: finalResult });
     }

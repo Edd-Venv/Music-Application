@@ -17,9 +17,9 @@ function Chart() {
       .then((result) => {
         setState({
           isLoaded: true,
-          tracks: result.data.ChartData.tracks,
-          albums: result.data.ChartData.albums,
-          artists: result.data.ChartData.artists,
+          tracks: result.data.finalResult.ChartData.tracks,
+          albums: result.data.finalResult.ChartData.albums,
+          artists: result.data.finalResult.ChartData.artists,
         });
       });
   }, []);

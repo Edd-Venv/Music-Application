@@ -12,7 +12,8 @@ function Header() {
         return response.json();
       })
       .then((result) => {
-        setState({ isLoaded: true, data: result.data.HeaderData });
+        console.log(result.data.finalResult);
+        setState({ isLoaded: true, data: result.data.finalResult.HeaderData });
       });
   }, []);
 
@@ -49,4 +50,4 @@ function Header() {
     </React.Fragment>
   );
 }
-export default Header;
+export default React.memo(Header);
