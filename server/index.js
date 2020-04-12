@@ -263,22 +263,35 @@ server.use(express.urlencoded({ extended: true })); // to support URL-encoded bo
 ////////////////////////////////////////////////////////////////////////////API CALLS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////Fetching Header Data
 server.get("/", async (req, res) => {
-  const firstApi = `https://api.deezer.com/artist/27`;
-  const secondApi = `https://api.deezer.com/artist/29`;
-  const thirdApi = `https://api.deezer.com/artist/30`;
+  const chartsApi = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/0`;
+  const firstArtistApiCall = `https://api.deezer.com/artist/27`;
+  const secondArtistApiCall = `https://api.deezer.com/artist/29`;
+  const thirdArtistApiCall = `https://api.deezer.com/artist/30`;
 
   try {
-    const exists = Cache.has("headerData");
+    const exists = Cache.has("ApiData");
     if (exists) {
-      res.json({ data: Cache.get("headerData") });
+      res.json({ data: Cache.get("ApiData") });
     } else {
-      const firstResult = await (await fetch(firstApi)).json();
-      const secondResult = await (await fetch(secondApi)).json();
-      const thirdResult = await (await fetch(thirdApi)).json();
+      const firstArtist = await (await fetch(firstArtistApiCall)).json();
+      const secondArtist = await (await fetch(secondArtistApiCall)).json();
+      const thirdArtist = await (await fetch(thirdArtistApiCall)).json();
+      const charts = await (
+        await fetch(chartsApi, {
+          headers: { origin: "https://cors-anywhere.herokuapp.com/" },
+        })
+      ).json();
 
-      const finalResult = [firstResult, secondResult, thirdResult];
-      Cache.set("headerData", finalResult, 691200);
-      res.json({ data: finalResult });
+      const finalResult = {
+        HeaderData: [firstArtist, secondArtist, thirdArtist],
+        ChartData: {
+          tracks: charts.tracks.data.slice(0, 6),
+          albums: charts.albums.data.slice(0, 6),
+          artists: charts.artists.data.slice(0, 6),
+        },
+      };
+      Cache.set("ApiData", { ...finalResult }, 691200);
+      res.json({ ...finalResult });
     }
   } catch (error) {
     res.json({ error: error });
@@ -286,7 +299,6 @@ server.get("/", async (req, res) => {
 });
 
 //SEARCH DATA
-
 server.post("/search", async (req, res) => {
   const firstApi = `https://api.deezer.com/search?q=${req.body.search_text}`;
   const secondApi = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=music&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
@@ -355,7 +367,7 @@ server.post("/search/saveSong", async (req, res, next) => {
   saveSong(req, res, next);
 });
 
-///FETCHING SAVED Songs
+///FETCHING SAVED SONGS
 server.get("/MySongs", async (req, res) => {
   try {
     const userId = isAuth(req);
@@ -391,6 +403,13 @@ server.post("/MySongs/Delete", async (req, res) => {
   }
 });
 
+server.post("/buttonUI", async (req, res) => {
+  try {
+    res.json({ key: req.body.song_key });
+  } catch (error) {
+    res.json({ error: error });
+  }
+});
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 server.listen(process.env.PORT, () =>
