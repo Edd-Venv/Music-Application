@@ -5,7 +5,11 @@ import AudioPlayer from "react-h5-audio-player";
 
 function SearchResult(props) {
   const [user] = useContext(UserContext);
-  const [state, setState] = useState({ key: 0, message: "" });
+  const [state, setState] = useState({
+    key: 0,
+    message: "",
+    buttonDisplay: "DisplayButtonShow",
+  });
   const { results, handleClose } = props;
 
   async function saveSong(Args) {
@@ -31,10 +35,40 @@ function SearchResult(props) {
       ).json();
 
       if (!result.error) {
-        setState({ key: result.key, message: result.message });
+        setState({
+          key: result.key,
+          message: result.message,
+          buttonDisplay: "DisplayButtonShow",
+        });
       } else {
         setState({ message: result.error });
       }
+    }
+  }
+
+  async function buttonUI(Args) {
+    const result = await (
+      await fetch("http://localhost:4020/buttonUI", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          song_key: Args[0],
+          ui_button_click: Args[1],
+        }),
+      })
+    ).json();
+
+    if (!result.error) {
+      setState({
+        ...state,
+        key: result.key,
+        uiButtonClick: result.uiButtonClick,
+        buttonDisplay: "DisplayButtonShow",
+      });
+    } else {
+      console.log("message", result.error);
     }
   }
 
@@ -94,13 +128,28 @@ function SearchResult(props) {
                           alt="..."
                         />
                       </div>
+
                       <div className="col-md-4" style={{ width: "30%" }}>
-                        <AudioPlayer
-                          volume="0.5"
-                          layout="stacked"
-                          src={result.preview}
-                          control="false"
-                        />
+                        {result.id === state.key &&
+                        state.uiButtonClick === true ? (
+                          <div className="top-4-tracks-audio-player">
+                            <AudioPlayer
+                              src={result.preview}
+                              volume="0.5"
+                              controls
+                            />
+                          </div>
+                        ) : (
+                          <div className={state.buttonDisplay}>
+                            <button
+                              className="btn btn-dark"
+                              type="submit"
+                              onClick={buttonUI.bind(this, [result.id, true])}
+                            >
+                              <i className="fab fa-google-play" />
+                            </button>
+                          </div>
+                        )}
                       </div>
                       <div className="col-md-8">
                         <div className="card-body" id="search-result-font">

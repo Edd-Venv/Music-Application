@@ -285,9 +285,9 @@ server.get("/", async (req, res) => {
       const finalResult = {
         HeaderData: [firstArtist, secondArtist, thirdArtist],
         ChartData: {
-          tracks: charts.tracks.data.slice(0, 6),
+          tracks: charts.tracks.data.slice(0, 5),
           albums: charts.albums.data.slice(0, 6),
-          artists: charts.artists.data.slice(0, 6),
+          artists: charts.artists.data.slice(0, 7),
         },
       };
       Cache.set("ApiData", { ...finalResult }, 691200);
@@ -403,9 +403,13 @@ server.post("/MySongs/Delete", async (req, res) => {
   }
 });
 
+/// SENDING SELETED BUTTONs KEY
 server.post("/buttonUI", async (req, res) => {
   try {
-    res.json({ key: req.body.song_key });
+    res.json({
+      key: req.body.song_key,
+      uiButtonClick: req.body.ui_button_click,
+    });
   } catch (error) {
     res.json({ error: error });
   }
