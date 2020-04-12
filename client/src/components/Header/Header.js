@@ -12,7 +12,7 @@ function Header() {
         return response.json();
       })
       .then((result) => {
-        setState({ isLoaded: true, data: result.data });
+        setState({ isLoaded: true, data: result.data.HeaderData });
       });
   }, []);
 
