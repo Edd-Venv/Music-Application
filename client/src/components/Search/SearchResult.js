@@ -81,9 +81,8 @@ function SearchResult(props) {
               results.map((result) => {
                 return (
                   <div
-                    className="card mb-3"
+                    className="card mb-3 search-result-grid-card"
                     key={result.id}
-                    style={{ width: "85%" }}
                     id="search-result-item"
                   >
                     <div className="row no-gutters">

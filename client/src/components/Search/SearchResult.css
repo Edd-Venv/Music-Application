@@ -92,6 +92,9 @@
     font-size: 1.5rem;
     margin-left: 1%;
   }
+  .search-result-grid-card {
+    width: 90vw;
+  }
 
   .close {
     left: 85%;
@@ -123,6 +126,9 @@
     font-size: 1.7rem;
     margin-left: 1%;
   }
+  .search-result-grid-card {
+    width: 80vw;
+  }
 
   .close {
     left: 85%;
@@ -146,7 +152,9 @@
     font-size: 1.7rem;
     margin-left: 1%;
   }
-
+  .search-result-grid-card {
+    width: 78vw;
+  }
   .close {
     left: 87%;
   }
@@ -168,6 +176,9 @@
   #search-result-font {
     font-size: 1.7rem;
     margin-left: 1%;
+  }
+  .search-result-grid-card {
+    width: 45vw;
   }
   .close {
     left: 92%;
@@ -196,6 +207,9 @@
     font-size: 1.7rem;
     margin-left: 1%;
   }
+  .search-result-grid-card {
+    width: 27vw;
+  }
   .close {
     left: 94%;
   }
@@ -222,6 +236,9 @@
   #search-result-font {
     font-size: 1.7rem;
     margin-left: 1%;
+  }
+  .search-result-grid-card {
+    width: 20vw;
   }
   .close {
     left: 95%;
