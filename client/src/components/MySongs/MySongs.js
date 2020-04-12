@@ -3,7 +3,6 @@ import Navigation from "../../nav/Navigation/Navigation.js";
 import AudioPlayer from "react-h5-audio-player";
 import { UserContext } from "../../App.js";
 import "./MySongs.css";
-import OneSong from "./OneSong.js";
 
 const MySongs = (props) => {
   const [user] = useContext(UserContext);
@@ -67,20 +66,17 @@ const MySongs = (props) => {
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
           You Don't Have Songs Saved.
         </h2>
-      ) : user.accesstoken && content[0].length <= 2 ? (
-        <OneSong deleteSong={deleteSong} content={content} />
       ) : (
         <div className="my-songs-container">
           {content[0].map((info) => {
             return (
               <div
-                className="card mb-3"
-                style={{ width: "85%" }}
+                className="card mb-3 gird-card-size"
                 id="my-songs-item"
                 key={info.song_key}
               >
                 <div className="row no-gutters">
-                  <div style={{ width: "30%", marginLeft: "3.2%" }}>
+                  <div id="my-songs-artist-image">
                     <img
                       alt="loading"
                       src={info.artist_image}
