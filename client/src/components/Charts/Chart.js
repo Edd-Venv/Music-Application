@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Top4Tracks from "./Top4Tracks.js";
 import "./Chart.css";
+import Top5Albums from "./Top5Albums.js";
+import Top6Artists from "./Top6Artists.js";
 
 function Chart() {
   const [state, setState] = useState({
@@ -16,6 +18,8 @@ function Chart() {
         setState({
           isLoaded: true,
           tracks: result.data.ChartData.tracks,
+          albums: result.data.ChartData.albums,
+          artists: result.data.ChartData.artists,
         });
       });
   }, []);
@@ -23,7 +27,9 @@ function Chart() {
   return (
     <React.Fragment>
       <div className="ChartsContainer">
+        <Top5Albums albums={state.albums} isLoaded={state.isLoaded} />
         <Top4Tracks tracks={state.tracks} isLoaded={state.isLoaded} />
+        <Top6Artists artists={state.artists} isLoaded={state.isLoaded} />
       </div>
     </React.Fragment>
   );
