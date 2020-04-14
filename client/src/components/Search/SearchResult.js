@@ -9,6 +9,7 @@ function SearchResult(props) {
     key: 0,
     message: "",
     displayAudioButton: "show-music-button",
+    displayVideoButton: "show-video-button",
   });
   const { results, handleClose } = props;
 
@@ -38,6 +39,7 @@ function SearchResult(props) {
         setState({
           key: result.key,
           message: result.message,
+          displayVideoButton: "show-video-button",
           displayAudioButton: "show-music-button",
         });
       } else {
@@ -46,7 +48,7 @@ function SearchResult(props) {
     }
   }
 
-  async function audioButton(Args) {
+  async function musicVideoButton(Args) {
     const result = await (
       await fetch("http://localhost:4020/buttonUI", {
         method: "POST",
@@ -55,7 +57,7 @@ function SearchResult(props) {
         },
         body: JSON.stringify({
           song_key: Args[0],
-          audio_button_click: Args[1],
+          music_video_button_click: Args[1],
         }),
       })
     ).json();
@@ -64,8 +66,37 @@ function SearchResult(props) {
       setState({
         ...state,
         key: result.key,
-        audioButtonClicked: result.audioButtonClicked,
+        musicVideoButtonClicked: result.musicVideoButtonClicked,
         displayAudioButton: "show-music-button",
+        displayVideoButton: "show-video-button",
+      });
+    } else {
+      console.log("message", result.error);
+    }
+  }
+
+  async function musicAudioButton(Args) {
+    const result = await (
+      await fetch("http://localhost:4020/buttonUI", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          song_key: Args[0],
+          music_audio_button_click: Args[1],
+        }),
+      })
+    ).json();
+
+    if (!result.error) {
+      console.log(result.musicAudioButtonClicked);
+      setState({
+        ...state,
+        key: result.key,
+        musicAudioButtonClicked: result.musicAudioButtonClicked,
+        displayAudioButton: "show-music-button",
+        displayVideoButton: "show-video-button",
       });
     } else {
       console.log("message", result.error);
@@ -131,7 +162,7 @@ function SearchResult(props) {
 
                       <div className="col-md-4" style={{ width: "30%" }}>
                         {result.id === state.key &&
-                        state.audioButtonClicked === true ? (
+                        state.musicAudioButtonClicked === true ? (
                           <div className="top-4-tracks-audio-player">
                             <AudioPlayer
                               src={result.preview}
@@ -144,7 +175,7 @@ function SearchResult(props) {
                             <button
                               className="btn btn-dark"
                               type="submit"
-                              onClick={audioButton.bind(this, [
+                              onClick={musicAudioButton.bind(this, [
                                 result.id,
                                 true,
                               ])}

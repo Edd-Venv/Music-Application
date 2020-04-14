@@ -433,7 +433,7 @@ server.post("/buttonUI", async (req, res) => {
   try {
     res.json({
       key: req.body.song_key,
-      audioButtonClicked: req.body.audio_button_click,
+      musicAudioButtonClicked: req.body.music_audio_button_click,
     });
   } catch (error) {
     res.json({ error: error });
