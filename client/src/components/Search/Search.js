@@ -25,6 +25,7 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
+          // console.log(Data.data[0].data.slice(0, 6));
           setState({ data: Data.data[0].data.slice(0, 6) });
         });
     })();
