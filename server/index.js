@@ -300,44 +300,18 @@ server.get("/", async (req, res) => {
 
 //SEARCH DATA
 server.post("/search", async (req, res) => {
-  const firstApi = `https://api.deezer.com/search?q=${req.body.search_text}`;
-  const secondApi = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=music&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
+  const Api = `https://api.deezer.com/search?q=${req.body.search_text}`;
 
   try {
     const exists = Cache.has(`${req.body.search_text}`);
     if (exists) {
       res.json({ data: Cache.get(`${req.body.search_text}`) });
     } else {
-      const firstResult = await (await fetch(firstApi)).json();
-      const secondResult = await (await fetch(secondApi)).json();
-      const finalResult = [firstResult, secondResult];
+      const apiResult = await (await fetch(Api)).json();
+      const songs = apiResult.data.slice(0, 6);
 
-      const songs = firstResult.data.slice(0, 6);
-      //get result song titles from first searchResult
-      const titles = [];
-      for (let i = 0; i < songs.length; i++) {
-        titles.push(`${songs[i].artist.name}` + " " + `${songs[i].title}`);
-      }
-      /*
-      //perform a search for each title and get the youtubeVideoID
-      const videoIDs = [];
-      for (let i = 0; i < titles.length; i++) {
-        const googleApi = `https://www.googleapis.com/youtube/v3/search?q=${titles[i]}&part=snippet&key=AIzaSyCB3A6tR-JHZoGro-X6vCQx1JRDG9V7npY`;
-        const videoResult = await (await fetch(googleApi)).json();
-        videoIDs.push(videoResult.items[0].id.videoId);
-      }
-
-      const youtubeVideoLinks = [];
-      for (let i = 0; i < videoIDs.length; i++) {
-        let youtubeVideoLink = "https://www.youtube.com/watch?v=";
-        youtubeVideoLink += videoIDs[i];
-        youtubeVideoLinks.push(youtubeVideoLink);
-        youtubeVideoLink = "https://www.youtube.com/watch?v=";
-      }
-      console.log(youtubeVideoLinks);
-*/
-      Cache.set(`${req.body.search_text}`, finalResult, 691200);
-      res.json({ data: finalResult });
+      Cache.set(`${req.body.search_text}`, songs, 691200);
+      res.json({ data: songs });
     }
   } catch (error) {
     res.json({ error: error });

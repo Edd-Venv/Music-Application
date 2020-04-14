@@ -9,8 +9,8 @@ function SearchResult(props) {
     key: 0,
     message: "",
     displayAudioButton: "show-music-button",
-    displayVideoButton: "show-video-button",
   });
+
   const { results, handleClose } = props;
 
   async function saveSong(Args) {
@@ -39,39 +39,11 @@ function SearchResult(props) {
         setState({
           key: result.key,
           message: result.message,
-          displayVideoButton: "show-video-button",
           displayAudioButton: "show-music-button",
         });
       } else {
         setState({ message: result.error });
       }
-    }
-  }
-
-  async function musicVideoButton(Args) {
-    const result = await (
-      await fetch("http://localhost:4020/buttonUI", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          song_key: Args[0],
-          music_video_button_click: Args[1],
-        }),
-      })
-    ).json();
-
-    if (!result.error) {
-      setState({
-        ...state,
-        key: result.key,
-        musicVideoButtonClicked: result.musicVideoButtonClicked,
-        displayAudioButton: "show-music-button",
-        displayVideoButton: "show-video-button",
-      });
-    } else {
-      console.log("message", result.error);
     }
   }
 
@@ -90,13 +62,12 @@ function SearchResult(props) {
     ).json();
 
     if (!result.error) {
-      console.log(result.musicAudioButtonClicked);
+      console.log(result);
       setState({
         ...state,
         key: result.key,
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
-        displayVideoButton: "show-video-button",
       });
     } else {
       console.log("message", result.error);
