@@ -318,7 +318,7 @@ server.post("/search", async (req, res) => {
       for (let i = 0; i < songs.length; i++) {
         titles.push(`${songs[i].artist.name}` + " " + `${songs[i].title}`);
       }
-
+      /*
       //perform a search for each title and get the youtubeVideoID
       const videoIDs = [];
       for (let i = 0; i < titles.length; i++) {
@@ -335,7 +335,7 @@ server.post("/search", async (req, res) => {
         youtubeVideoLink = "https://www.youtube.com/watch?v=";
       }
       console.log(youtubeVideoLinks);
-
+*/
       Cache.set(`${req.body.search_text}`, finalResult, 691200);
       res.json({ data: finalResult });
     }
@@ -433,7 +433,7 @@ server.post("/buttonUI", async (req, res) => {
   try {
     res.json({
       key: req.body.song_key,
-      uiButtonClick: req.body.ui_button_click,
+      audioButtonClicked: req.body.audio_button_click,
     });
   } catch (error) {
     res.json({ error: error });

@@ -8,7 +8,7 @@ function SearchResult(props) {
   const [state, setState] = useState({
     key: 0,
     message: "",
-    buttonDisplay: "DisplayButtonShow",
+    displayAudioButton: "show-music-button",
   });
   const { results, handleClose } = props;
 
@@ -38,7 +38,7 @@ function SearchResult(props) {
         setState({
           key: result.key,
           message: result.message,
-          buttonDisplay: "DisplayButtonShow",
+          displayAudioButton: "show-music-button",
         });
       } else {
         setState({ message: result.error });
@@ -46,7 +46,7 @@ function SearchResult(props) {
     }
   }
 
-  async function buttonUI(Args) {
+  async function audioButton(Args) {
     const result = await (
       await fetch("http://localhost:4020/buttonUI", {
         method: "POST",
@@ -55,7 +55,7 @@ function SearchResult(props) {
         },
         body: JSON.stringify({
           song_key: Args[0],
-          ui_button_click: Args[1],
+          audio_button_click: Args[1],
         }),
       })
     ).json();
@@ -64,8 +64,8 @@ function SearchResult(props) {
       setState({
         ...state,
         key: result.key,
-        uiButtonClick: result.uiButtonClick,
-        buttonDisplay: "DisplayButtonShow",
+        audioButtonClicked: result.audioButtonClicked,
+        displayAudioButton: "show-music-button",
       });
     } else {
       console.log("message", result.error);
@@ -131,7 +131,7 @@ function SearchResult(props) {
 
                       <div className="col-md-4" style={{ width: "30%" }}>
                         {result.id === state.key &&
-                        state.uiButtonClick === true ? (
+                        state.audioButtonClicked === true ? (
                           <div className="top-4-tracks-audio-player">
                             <AudioPlayer
                               src={result.preview}
@@ -140,11 +140,14 @@ function SearchResult(props) {
                             />
                           </div>
                         ) : (
-                          <div className={state.buttonDisplay}>
+                          <div className={state.displayAudioButton}>
                             <button
                               className="btn btn-dark"
                               type="submit"
-                              onClick={buttonUI.bind(this, [result.id, true])}
+                              onClick={audioButton.bind(this, [
+                                result.id,
+                                true,
+                              ])}
                             >
                               <i className="fab fa-google-play" />
                             </button>
