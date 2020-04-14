@@ -82,7 +82,18 @@
   border: 2px solid whitesmoke;
   width: 93%;
 }
-
+div.show-music-button {
+  display: block;
+}
+div.hide-music-button {
+  display: none;
+}
+div.show-video-button {
+  display: block;
+}
+div.hide-video-button {
+  display: none;
+}
 @media (min-width: 320px) {
   #artist-image {
     max-width: 50vw;
