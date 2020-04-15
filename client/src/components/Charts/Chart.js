@@ -15,11 +15,12 @@ function Chart() {
         return response.json();
       })
       .then((result) => {
+        console.log("charts", result);
         setState({
           isLoaded: true,
-          tracks: result.data.finalResult.ChartData.tracks,
-          albums: result.data.finalResult.ChartData.albums,
-          artists: result.data.finalResult.ChartData.artists,
+          tracks: result.ChartData.tracks,
+          albums: result.ChartData.albums,
+          artists: result.ChartData.artists,
         });
       });
   }, []);

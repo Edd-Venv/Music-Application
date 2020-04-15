@@ -7,19 +7,17 @@ function Header() {
   });
 
   useEffect(() => {
-    const fetchHeaderData = async () => {
-      await fetch("http://localhost:4020/")
-        .then((response) => {
-          return response.json();
-        })
-        .then((result) => {
-          setState({
-            isLoaded: true,
-            data: result.data.finalResult.HeaderData,
-          });
+    fetch("http://localhost:4020/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        console.log("Header", result);
+        setState({
+          isLoaded: true,
+          data: result.HeaderData,
         });
-    };
-    fetchHeaderData();
+      });
   }, []);
 
   return (

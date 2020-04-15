@@ -261,7 +261,7 @@ server.use(express.json()); // to support JSON-encoded bodies
 server.use(express.urlencoded({ extended: true })); // to support URL-encoded bodies
 
 ////////////////////////////////////////////////////////////////////////////API CALLS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-/////Fetching Header Data
+/////Fetching Header Data/ Charts
 server.get("/", async (req, res) => {
   const chartsApi = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/0`;
   const firstArtistApiCall = `https://api.deezer.com/artist/27`;
@@ -270,8 +270,9 @@ server.get("/", async (req, res) => {
 
   try {
     const exists = Cache.has("ApiData");
+
     if (exists) {
-      res.json({ data: Cache.get("ApiData") });
+      res.json({ ...Cache.get("ApiData") });
     } else {
       const firstArtist = await (await fetch(firstArtistApiCall)).json();
       const secondArtist = await (await fetch(secondArtistApiCall)).json();
@@ -290,8 +291,9 @@ server.get("/", async (req, res) => {
           artists: charts.artists.data.slice(0, 7),
         },
       };
-      Cache.set("ApiData", { finalResult }, 691200);
-      res.json({ finalResult });
+
+      Cache.set("ApiData", { ...finalResult }, 691200);
+      res.json({ ...finalResult });
     }
   } catch (error) {
     res.json({ error: error });
