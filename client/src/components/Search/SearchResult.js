@@ -11,7 +11,12 @@ function SearchResult(props) {
     displayAudioButton: "show-music-button",
   });
 
-  const { results, handleClose } = props;
+  const {
+    results,
+    handleClose,
+    handleMusicVideoCloseButton,
+    handleMusicVideoPlayButton,
+  } = props;
 
   async function saveSong(...Args) {
     if (!user.accesstoken) return console.log("You need to login to Save.");
@@ -62,7 +67,6 @@ function SearchResult(props) {
     ).json();
 
     if (!result.error) {
-      console.log(result);
       setState({
         ...state,
         key: result.key,
@@ -81,10 +85,20 @@ function SearchResult(props) {
       }, 3000);
     }
   }, [state]);
-
+  console.log(results.video[0]);
   return (
     <React.Fragment>
       <br />
+      <div id="search-results-music-video-model" key={results.video[0].yID}>
+        <div
+          onClick={handleMusicVideoCloseButton}
+          className="search-results-close-button"
+        >
+          ×
+        </div>
+        <iframe src={results.video[0].yUrl} title={results.video[0].name} />
+      </div>
+
       {results === undefined ? (
         <div>
           <p className="error-paragraph">
@@ -95,109 +109,120 @@ function SearchResult(props) {
           </p>
         </div>
       ) : (
-        <div id="search-results-model">
-          <div onClick={handleClose} className="search-results-close-button">
-            ×
-          </div>
-          <br />
-          <br />
-          <br />
-          <div className="search-results-container">
-            {results[0].DummyData ? (
-              <div className="">
-                <div
-                  className="spinner-grow text-dark"
-                  role="status"
-                  style={{ margin: "0 auto" }}
-                >
-                  <span className="sr-only">Loading...</span>
-                </div>
-              </div>
-            ) : (
-              results.map((result) => {
-                return (
+        <React.Fragment>
+          <div id="search-results-model">
+            <div onClick={handleClose} className="search-results-close-button">
+              ×
+            </div>
+            <button
+              className="btn btn-dark"
+              type="submit"
+              onClick={handleMusicVideoPlayButton}
+            >
+              <i className="fab fa-google-play" />
+            </button>
+            <br />
+            <br />
+            <br />
+            <div className="search-results-container">
+              {results.songs[0].DummyData ? (
+                <div className="">
                   <div
-                    className="card mb-3 search-result-grid-card"
-                    key={result.id}
-                    id="search-result-item"
+                    className="spinner-grow text-dark"
+                    role="status"
+                    style={{ margin: "0 auto" }}
                   >
-                    <div className="row no-gutters">
-                      <div id="artist-image">
-                        <img
-                          src={result.artist.picture_xl}
-                          style={{ width: "100%" }}
-                          className="img-thumbnail"
-                          alt="..."
-                        />
-                      </div>
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
+              ) : (
+                results.songs.map((result) => {
+                  return (
+                    <div
+                      className="card mb-3 search-result-grid-card"
+                      key={result.id}
+                      id="search-result-item"
+                    >
+                      <div className="row no-gutters">
+                        <div id="artist-image">
+                          <img
+                            src={result.artist.picture_xl}
+                            style={{ width: "100%" }}
+                            className="img-thumbnail"
+                            alt="..."
+                          />
+                        </div>
 
-                      <div className="col-md-4" style={{ width: "30%" }}>
-                        {result.id === state.key &&
-                        state.musicAudioButtonClicked === true ? (
-                          <div className="top-4-tracks-audio-player">
-                            <AudioPlayer
-                              src={result.preview}
-                              volume="0.5"
-                              controls
-                            />
-                          </div>
-                        ) : (
-                          <div className={state.displayAudioButton}>
-                            <button
-                              className="btn btn-dark"
-                              type="submit"
-                              onClick={musicAudioButton.bind(this, [
-                                result.id,
-                                true,
-                              ])}
-                            >
-                              <i className="fab fa-google-play" />
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                      <div className="col-md-8">
-                        <div className="card-body" id="search-result-font">
-                          <h5 className="card-title">
-                            <big>
-                              <strong>{result.artist.name}</strong>
-                            </big>
-                          </h5>
-                          <div className="card-text">
-                            <p>Song: {result.title}</p>
-                            <p>Album: {result.album.title}</p>
-                            <p>
-                              <small className="text-muted">
-                                Explicit Lyrics:{" "}
-                                {result.explicit_lyrics === true ? "Yes" : "No"}
-                              </small>
-                            </p>
-                            <button
-                              className="btn btn-primary"
-                              onClick={saveSong.bind(
-                                this,
-                                result.id,
-                                result.artist.name,
-                                result.artist.picture_xl,
-                                result.title,
-                                result.album.title,
-                                result.explicit_lyrics,
-                                result.preview
-                              )}
-                            >
-                              save
-                            </button>
-                            {result.id === state.key ? state.message : null}
+                        <div className="col-md-4" style={{ width: "30%" }}>
+                          {result.id === state.key &&
+                          state.musicAudioButtonClicked === true ? (
+                            <div className="top-4-tracks-audio-player">
+                              <AudioPlayer
+                                src={result.preview}
+                                volume="0.5"
+                                controls
+                              />
+                            </div>
+                          ) : (
+                            <div className={state.displayAudioButton}>
+                              <button
+                                className="btn btn-dark"
+                                type="submit"
+                                onClick={musicAudioButton.bind(this, [
+                                  result.id,
+                                  true,
+                                ])}
+                              >
+                                <i className="fab fa-google-play" />
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                        <div className="col-md-8">
+                          <div className="card-body" id="search-result-font">
+                            <h5 className="card-title">
+                              <big>
+                                <strong>{result.artist.name}</strong>
+                              </big>
+                            </h5>
+                            <div className="card-text">
+                              <p>Song: {result.title}</p>
+                              <p>Album: {result.album.title}</p>
+                              <p>
+                                <small className="text-muted">
+                                  Explicit Lyrics:{" "}
+                                  {result.explicit_lyrics === true
+                                    ? "Yes"
+                                    : "No"}
+                                </small>
+                              </p>
+                              <button
+                                className="btn btn-primary"
+                                onClick={saveSong.bind(
+                                  this,
+                                  result.id,
+                                  result.artist.name,
+                                  result.artist.picture_xl,
+                                  result.title,
+                                  result.album.title,
+                                  result.explicit_lyrics,
+                                  result.preview
+                                )}
+                              >
+                                save
+                              </button>
+                              {result.id === state.key ? state.message : null}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })
-            )}
+                  );
+                })
+              )}
+            </div>
           </div>
-        </div>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
