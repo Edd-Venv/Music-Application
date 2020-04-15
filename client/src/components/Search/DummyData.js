@@ -1,5 +1,5 @@
 const initialState = {
-  data: [
+  songs: [
     {
       DummyData: true,
       id: 350171311,
@@ -46,6 +46,15 @@ const initialState = {
         tracklist: "https://api.deezer.com/album/39949511/tracks",
         type: "album",
       },
+    },
+  ],
+  video: [
+    {
+      Name: "Kendrick Lamar",
+      Type: "music",
+      wUrl: "http://en.wikipedia.org/wiki/Kendrick_Lamar",
+      yUrl: "https://www.youtube-nocookie.com/embed/tvTRZJ-4EyI",
+      yID: "tvTRZJ-4EyI",
     },
   ],
 };

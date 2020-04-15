@@ -15,7 +15,6 @@ function Chart() {
         return response.json();
       })
       .then((result) => {
-        console.log("charts", result);
         setState({
           isLoaded: true,
           tracks: result.ChartData.tracks,

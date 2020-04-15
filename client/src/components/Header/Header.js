@@ -12,7 +12,6 @@ function Header() {
         return response.json();
       })
       .then((result) => {
-        console.log("Header", result);
         setState({
           isLoaded: true,
           data: result.HeaderData,
