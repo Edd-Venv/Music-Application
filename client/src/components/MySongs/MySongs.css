@@ -1,3 +1,10 @@
+div.show-music-button {
+  display: block;
+}
+div.hide-music-button {
+  display: none;
+}
+
 .my-songs-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));

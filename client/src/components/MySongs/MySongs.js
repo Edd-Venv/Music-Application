@@ -7,7 +7,7 @@ import "./MySongs.css";
 const MySongs = (props) => {
   const [user] = useContext(UserContext);
   const [content, setContent] = useState({
-    buttonDisplay: "DisplayButtonShow",
+    displayAudioButton: "show-music-button",
   });
 
   async function fetchSongs() {
@@ -22,7 +22,10 @@ const MySongs = (props) => {
     ).json();
 
     if (result.data)
-      setContent({ buttonDisplay: "DisplayButtonShow", data: result.data });
+      setContent({
+        displayAudioButton: "show-music-button",
+        data: result.data,
+      });
   }
 
   useEffect(() => {
@@ -48,7 +51,7 @@ const MySongs = (props) => {
       console.log(error);
     }
   }
-  async function buttonUI(Args) {
+  async function musicAudioButton(Args) {
     const result = await (
       await fetch("http://localhost:4020/buttonUI", {
         method: "POST",
@@ -57,7 +60,7 @@ const MySongs = (props) => {
         },
         body: JSON.stringify({
           song_key: Args[0],
-          ui_button_click: Args[1],
+          music_audio_button_click: Args[1],
         }),
       })
     ).json();
@@ -66,8 +69,8 @@ const MySongs = (props) => {
       setContent({
         ...content,
         key: result.key,
-        uiButtonClick: result.uiButtonClick,
-        buttonDisplay: "DisplayButtonShow",
+        musicAudioButtonClicked: result.musicAudioButtonClicked,
+        displayAudioButton: "show-music-button",
       });
     } else {
       console.log("message", result.error);
@@ -114,16 +117,19 @@ const MySongs = (props) => {
                   </div>
                   <div className="col-md-4" style={{ width: "30%" }}>
                     {info.song_key === content.key &&
-                    content.uiButtonClick === true ? (
+                    content.musicAudioButtonClicked === true ? (
                       <div className="top-4-tracks-audio-player">
                         <AudioPlayer src={info.song} volume="0.5" controls />
                       </div>
                     ) : (
-                      <div className={content.buttonDisplay}>
+                      <div className={content.displayAudioButton}>
                         <button
                           className="btn btn-dark"
                           type="submit"
-                          onClick={buttonUI.bind(this, [info.song_key, true])}
+                          onClick={musicAudioButton.bind(this, [
+                            info.song_key,
+                            true,
+                          ])}
                         >
                           <i className="fab fa-google-play" />
                         </button>

@@ -13,7 +13,7 @@ function SearchResult(props) {
 
   const { results, handleClose } = props;
 
-  async function saveSong(Args) {
+  async function saveSong(...Args) {
     if (!user.accesstoken) return console.log("You need to login to Save.");
     else {
       const result = await (
@@ -174,15 +174,16 @@ function SearchResult(props) {
                             </p>
                             <button
                               className="btn btn-primary"
-                              onClick={saveSong.bind(this, [
+                              onClick={saveSong.bind(
+                                this,
                                 result.id,
                                 result.artist.name,
                                 result.artist.picture_xl,
                                 result.title,
                                 result.album.title,
                                 result.explicit_lyrics,
-                                result.preview,
-                              ])}
+                                result.preview
+                              )}
                             >
                               save
                             </button>
