@@ -11,12 +11,16 @@ function Search() {
   };
 
   const handleMusicVideoPlayButton = () => {
+    if (document.getElementById("search-result-audio-player") !== null)
+      document.getElementById("search-result-audio-player");
+    document.querySelector("iframe").src = state.video[0].yUrl;
     document.getElementById("search-results-music-video-model").style.display =
       "block";
     document.getElementById("search-results-model").style.zIndex = 0;
   };
 
   const handleMusicVideoCloseButton = () => {
+    document.querySelector("iframe").src = "";
     document.getElementById("search-results-music-video-model").style.display =
       "none";
     document.getElementById("search-results-model").style.zIndex = 1;
