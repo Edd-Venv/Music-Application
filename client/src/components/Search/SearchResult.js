@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./SearchResult.css";
 import { UserContext } from "../../App.js";
-import AudioPlayer from "react-h5-audio-player";
+import MusicVideo from "./SearchResultVideo.js";
 
 function SearchResult(props) {
   const [user] = useContext(UserContext);
   const [state, setState] = useState({
     key: 0,
-    message: "",
+    message: "Save",
     displayAudioButton: "show-music-button",
   });
 
@@ -42,8 +42,10 @@ function SearchResult(props) {
 
       if (!result.error) {
         setState({
+          ...state,
           key: result.key,
           message: result.message,
+          musicAudioButtonClicked: false,
           displayAudioButton: "show-music-button",
         });
       } else {
@@ -68,8 +70,8 @@ function SearchResult(props) {
 
     if (!result.error) {
       setState({
-        ...state,
         key: result.key,
+        message: "Save",
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
       });
@@ -79,26 +81,20 @@ function SearchResult(props) {
   }
 
   useEffect(() => {
-    if (state.message !== "") {
+    if (state.message !== "Save") {
       setTimeout(() => {
-        setState({ key: 0, message: "" });
+        setState({ ...state, message: "Save" });
       }, 3000);
     }
   }, [state]);
-  console.log(results.video[0]);
+
   return (
     <React.Fragment>
       <br />
-      <div id="search-results-music-video-model" key={results.video[0].yID}>
-        <div
-          onClick={handleMusicVideoCloseButton}
-          className="search-results-close-button"
-        >
-          ×
-        </div>
-        <iframe src={results.video[0].yUrl} title={results.video[0].name} />
-      </div>
-
+      <MusicVideo
+        results={results}
+        handleMusicVideoCloseButton={handleMusicVideoCloseButton}
+      />
       {results === undefined ? (
         <div>
           <p className="error-paragraph">
@@ -114,13 +110,15 @@ function SearchResult(props) {
             <div onClick={handleClose} className="search-results-close-button">
               ×
             </div>
-            <button
-              className="btn btn-dark"
-              type="submit"
-              onClick={handleMusicVideoPlayButton}
-            >
-              <i className="fab fa-google-play" />
-            </button>
+            <div className="music-video-play-button-container">
+              <button
+                className="btn btn-dark"
+                onClick={handleMusicVideoPlayButton}
+              >
+                Music Video
+                <i className="fab fa-google-play" />
+              </button>
+            </div>
             <br />
             <br />
             <br />
@@ -153,31 +151,6 @@ function SearchResult(props) {
                           />
                         </div>
 
-                        <div className="col-md-4" style={{ width: "30%" }}>
-                          {result.id === state.key &&
-                          state.musicAudioButtonClicked === true ? (
-                            <div className="top-4-tracks-audio-player">
-                              <AudioPlayer
-                                src={result.preview}
-                                volume="0.5"
-                                controls
-                              />
-                            </div>
-                          ) : (
-                            <div className={state.displayAudioButton}>
-                              <button
-                                className="btn btn-dark"
-                                type="submit"
-                                onClick={musicAudioButton.bind(this, [
-                                  result.id,
-                                  true,
-                                ])}
-                              >
-                                <i className="fab fa-google-play" />
-                              </button>
-                            </div>
-                          )}
-                        </div>
                         <div className="col-md-8">
                           <div className="card-body" id="search-result-font">
                             <h5 className="card-title">
@@ -209,9 +182,35 @@ function SearchResult(props) {
                                   result.preview
                                 )}
                               >
-                                save
+                                {result.id === state.key
+                                  ? state.message
+                                  : "Save"}
                               </button>
-                              {result.id === state.key ? state.message : null}
+                              {result.id === state.key &&
+                              state.musicAudioButtonClicked === true ? (
+                                <div className="top-4-tracks-audio-player">
+                                  <audio
+                                    id="search-result-audio-player"
+                                    src={result.preview}
+                                    volume="0.5"
+                                    controls
+                                  />
+                                </div>
+                              ) : (
+                                <div className={state.displayAudioButton}>
+                                  <button
+                                    className="btn btn-dark"
+                                    type="submit"
+                                    onClick={musicAudioButton.bind(this, [
+                                      result.id,
+                                      true,
+                                    ])}
+                                  >
+                                    Song Preview
+                                    <i className="fab fa-google-play" />
+                                  </button>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
