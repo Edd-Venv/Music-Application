@@ -8,6 +8,8 @@ const SearchForm = React.memo((props) => {
     event.preventDefault();
     props.onAddSearch(currentText);
     setText("");
+    if (document.getElementById("top-5-tracks-audio-player") !== null)
+      document.getElementById("top-5-tracks-audio-player").pause();
     document.getElementById("search-results-model").style.display = "block";
   };
 

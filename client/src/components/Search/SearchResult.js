@@ -4,6 +4,7 @@ import { UserContext } from "../../App.js";
 import MusicVideo from "./SearchResultVideo.js";
 
 function SearchResult(props) {
+  let timeOut;
   const [user] = useContext(UserContext);
   const [state, setState] = useState({
     key: 0,
@@ -75,6 +76,9 @@ function SearchResult(props) {
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
       });
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
     } else {
       console.log("message", result.error);
     }
@@ -82,7 +86,7 @@ function SearchResult(props) {
 
   useEffect(() => {
     if (state.message !== "Save") {
-      setTimeout(() => {
+      timeOut = setTimeout(() => {
         setState({ ...state, message: "Save" });
       }, 3000);
     }
