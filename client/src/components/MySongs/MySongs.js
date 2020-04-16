@@ -115,27 +115,7 @@ const MySongs = (props) => {
                       style={{ width: "100%" }}
                     />
                   </div>
-                  <div className="col-md-4" style={{ width: "30%" }}>
-                    {info.song_key === content.key &&
-                    content.musicAudioButtonClicked === true ? (
-                      <div className="top-4-tracks-audio-player">
-                        <AudioPlayer src={info.song} volume="0.5" controls />
-                      </div>
-                    ) : (
-                      <div className={content.displayAudioButton}>
-                        <button
-                          className="btn btn-dark"
-                          type="submit"
-                          onClick={musicAudioButton.bind(this, [
-                            info.song_key,
-                            true,
-                          ])}
-                        >
-                          <i className="fab fa-google-play" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
+
                   <div className="col-md-8">
                     <div className="card-body" style={{ marginLeft: "2%" }}>
                       <h5 className="card-title">
@@ -161,6 +141,31 @@ const MySongs = (props) => {
                         >
                           Delete
                         </button>
+                        {info.song_key === content.key &&
+                        content.musicAudioButtonClicked === true ? (
+                          <div className="top-4-tracks-audio-player">
+                            <audio
+                              id="my-songs-audio-player"
+                              src={info.song}
+                              volume="0.5"
+                              controls
+                            />
+                          </div>
+                        ) : (
+                          <div className={content.displayAudioButton}>
+                            <button
+                              className="btn btn-dark"
+                              type="submit"
+                              onClick={musicAudioButton.bind(this, [
+                                info.song_key,
+                                true,
+                              ])}
+                            >
+                              Preview Song
+                              <i className="fab fa-google-play" />
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
