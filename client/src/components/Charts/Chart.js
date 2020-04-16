@@ -29,10 +29,10 @@ function Chart() {
       <div className="ChartsContainer">
         <Top5Albums albums={state.albums} isLoaded={state.isLoaded} />
         <Top4Tracks tracks={state.tracks} isLoaded={state.isLoaded} />
-        <Top6Artists artists={state.artists} isLoaded={state.isLoaded} />
       </div>
     </React.Fragment>
   );
 }
 
-export default React.memo(Chart);
+export default Chart;
+/*<Top6Artists artists={state.artists} isLoaded={state.isLoaded} /> */
