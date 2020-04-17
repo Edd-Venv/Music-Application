@@ -128,7 +128,7 @@ function SearchResult(props) {
             <br />
             <div className="search-results-container">
               {results.songs[0].DummyData ? (
-                <div className="">
+                <div style={{ display: "flex", minWidth: "1000px" }}>
                   <div
                     className="spinner-grow text-dark"
                     role="status"
@@ -146,15 +146,16 @@ function SearchResult(props) {
                       id="search-result-item"
                     >
                       <div className="row no-gutters">
-                        <div id="artist-image">
-                          <img
-                            src={result.artist.picture_xl}
-                            style={{ width: "100%" }}
-                            className="img-thumbnail"
-                            alt="..."
-                          />
+                        <div className="col-md-4">
+                          <div id="artist-image">
+                            <img
+                              src={result.artist.picture_xl}
+                              style={{ width: "100%" }}
+                              className="img-thumbnail"
+                              alt="..."
+                            />
+                          </div>
                         </div>
-
                         <div className="col-md-8">
                           <div className="card-body" id="search-result-font">
                             <h5 className="card-title">
@@ -173,50 +174,48 @@ function SearchResult(props) {
                                     : "No"}
                                 </small>
                               </p>
-                              <button
-                                className="btn btn-primary"
-                                onClick={saveSong.bind(
-                                  this,
-                                  result.id,
-                                  result.artist.name,
-                                  result.artist.picture_xl,
-                                  result.title,
-                                  result.album.title,
-                                  result.explicit_lyrics,
-                                  result.preview
-                                )}
-                              >
-                                {result.id === state.key
-                                  ? state.message
-                                  : "Save"}
-                              </button>
-                              {result.id === state.key &&
-                              state.musicAudioButtonClicked === true ? (
-                                <div className="top-4-tracks-audio-player">
-                                  <audio
-                                    id="search-result-audio-player"
-                                    src={result.preview}
-                                    volume="0.5"
-                                    controls
-                                  />
-                                </div>
-                              ) : (
-                                <div className={state.displayAudioButton}>
-                                  <button
-                                    className="btn btn-dark"
-                                    type="submit"
-                                    onClick={musicAudioButton.bind(this, [
-                                      result.id,
-                                      true,
-                                    ])}
-                                  >
-                                    Song Preview
-                                    <i className="fab fa-google-play" />
-                                  </button>
-                                </div>
-                              )}
                             </div>
                           </div>
+                        </div>
+                        <div className="col-md-4 search-result-buttons-container">
+                          <button
+                            className="btn btn-primary"
+                            onClick={saveSong.bind(
+                              this,
+                              result.id,
+                              result.artist.name,
+                              result.artist.picture_xl,
+                              result.title,
+                              result.album.title,
+                              result.explicit_lyrics,
+                              result.preview
+                            )}
+                          >
+                            {result.id === state.key ? state.message : "Save"}
+                          </button>
+                          {result.id === state.key &&
+                          state.musicAudioButtonClicked === true ? (
+                            <audio
+                              id="search-result-audio-player"
+                              src={result.preview}
+                              volume="0.5"
+                              controls
+                            />
+                          ) : (
+                            <div className={state.displayAudioButton}>
+                              <button
+                                className="btn btn-dark"
+                                type="submit"
+                                onClick={musicAudioButton.bind(this, [
+                                  result.id,
+                                  true,
+                                ])}
+                              >
+                                Song Preview
+                                <i className="fab fa-google-play" />
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

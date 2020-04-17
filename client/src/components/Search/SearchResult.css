@@ -50,7 +50,9 @@
     opacity: 1;
   }
 }
-
+.search-result-buttons-container {
+  margin-left: 2%;
+}
 .search-results-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
@@ -146,11 +148,6 @@
   width: 20%;
   margin: 0 auto;
 }
-.iframe {
-  margin-left: 3.5%;
-  border: 2px solid whitesmoke;
-  width: 93%;
-}
 
 div.show-music-button {
   display: block;
@@ -162,10 +159,13 @@ div.hide-music-button {
 @media (min-width: 320px) {
   #artist-image {
     max-width: 50vw;
-    margin-left: 3.3%;
+    margin-left: 4.5%;
   }
   #search-result-audio-player {
     width: 88vw;
+  }
+  .search-result-buttons-container {
+    margin-left: 5%;
   }
   #search-result-font {
     font-size: 1.5rem;
@@ -206,10 +206,13 @@ div.hide-music-button {
 @media (min-width: 375px) {
   #artist-image {
     max-width: 50vw;
-    margin-left: 3.3%;
+    margin-left: 4.5%;
   }
   #search-result-audio-player {
     width: 78vw;
+  }
+  .search-result-buttons-container {
+    margin-left: 5%;
   }
   #search-result-font {
     font-size: 1.7rem;
@@ -235,10 +238,13 @@ div.hide-music-button {
 @media (min-width: 425px) {
   #artist-image {
     max-width: 50vw;
-    margin-left: 3.3%;
+    margin-left: 4%;
   }
   #search-result-audio-player {
     width: 75vw;
+  }
+  .search-result-buttons-container {
+    margin-left: 4.5%;
   }
   #search-result-font {
     font-size: 1.7rem;
@@ -303,17 +309,21 @@ div.hide-music-button {
 @media (min-width: 1024px) {
   #artist-image {
     max-width: 13.5vw;
-    margin-left: 3.3%;
+    margin-left: 10%;
   }
+
   #search-result-audio-player {
-    width: 26vw;
+    width: 39vw;
+  }
+  .search-result-buttons-container {
+    margin-left: 3.7%;
   }
   #search-result-font {
     font-size: 1.7rem;
     margin-left: 1%;
   }
   .search-result-grid-card {
-    width: 27vw;
+    width: 40vw;
   }
   #search-result-music-video-iframe {
     margin-top: 2%;
@@ -333,6 +343,44 @@ div.hide-music-button {
     margin-left: 40%;
   }
 }
+@media (min-width: 1200px) {
+  #artist-image {
+    max-width: 13.5vw;
+    margin-left: 10%;
+  }
+
+  #search-result-audio-player {
+    width: 29.5vw;
+  }
+  .search-result-buttons-container {
+    margin-left: 3.7%;
+  }
+  #search-result-font {
+    font-size: 1.7rem;
+    margin-left: 1%;
+  }
+  .search-result-grid-card {
+    width: 30vw;
+  }
+  #search-result-music-video-iframe {
+    margin-top: 2%;
+    width: 60vw;
+    height: 40vw;
+  }
+  .close {
+    left: 94%;
+  }
+
+  .close-error {
+    right: 400px;
+    top: 20.5%;
+  }
+  .error-paragraph {
+    font-size: 1.5rem;
+    margin-left: 40%;
+  }
+}
+
 @media (min-width: 1440px) {
   #artist-image {
     max-width: 12vw;
