@@ -16,7 +16,7 @@ function Chart() {
       .then((result) => {
         setState({
           isLoaded: true,
-          tracks: result.ChartData.tracks,
+          tracks: result.ChartData.tracks.slice(0, 5),
           albums: result.ChartData.albums,
           artists: result.ChartData.artists,
         });
