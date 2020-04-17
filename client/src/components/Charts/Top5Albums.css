@@ -29,76 +29,89 @@ img {
 }
 @media (min-width: 320px) {
   .top-5-albums-container {
-    width: 30%;
+    width: 45%;
   }
   #top-5-albums-fonts {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-left: 3%;
   }
   .top-5-albums-image-container {
     min-width: 60px;
-    width: 76%;
-    margin-left: 11%;
+    width: 83%;
+    margin-left: 8.5%;
   }
 }
 @media (min-width: 375px) {
   .top-5-albums-container {
-    width: 30%;
+    width: 42%;
   }
   #top-5-albums-fonts {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     margin-left: 3%;
   }
   .top-5-albums-image-container {
     min-width: 60px;
-    width: 78%;
-    margin-left: 11%;
+    width: 81%;
+    margin-left: 9%;
   }
 }
 @media (min-width: 425px) {
   .top-5-albums-container {
-    width: 30%;
+    width: 41%;
   }
   #top-5-albums-fonts {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-left: 3%;
   }
   .top-5-albums-image-container {
     min-width: 60px;
-    width: 80%;
-    margin-left: 10%;
+    width: 85%;
+    margin-left: 7.5%;
   }
 }
 @media (min-width: 768px) {
   .top-5-albums-container {
-    width: 30%;
+    width: 45%;
   }
   #top-5-albums-fonts {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     margin-left: 3%;
   }
   .top-5-albums-image-container {
     width: 100%;
-    margin-left: 17%;
+    margin-left: 13%;
   }
 }
 
 @media (min-width: 1024px) {
   .top-5-albums-container {
-    width: 30%;
+    width: 43%;
   }
   #top-5-albums-fonts {
-    font-size: 1.45rem;
+    font-size: 1.8rem;
     margin-left: 3%;
   }
   .top-5-albums-image-container {
     width: 100%;
-    margin-left: 17%;
+    margin-left: 10%;
+  }
+}
+@media (min-width: 1085px) {
+  .top-5-albums-container {
+    width: 40%;
+  }
+  #top-5-albums-fonts {
+    font-size: 1.7rem;
+    margin-left: 3%;
+  }
+  .top-5-albums-image-container {
+    width: 90%;
+    margin-left: 10%;
   }
 }
 @media (min-width: 1440px) {
   .top-5-albums-container {
-    width: 30%;
+    width: 40%;
   }
   #top-5-albums-fonts {
     font-size: 1.6rem;
@@ -106,7 +119,7 @@ img {
   }
   .top-5-albums-image-container {
     width: 100%;
-    margin-left: 17%;
+    margin-left: 9%;
   }
 }
 @media (min-width: 2560px) {

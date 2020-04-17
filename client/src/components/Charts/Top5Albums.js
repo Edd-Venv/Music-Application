@@ -17,6 +17,7 @@ function Top5Albums(props) {
                         src={album.cover}
                         className="img-thumbnail"
                         alt="..."
+                        style={{ width: "100%" }}
                       />
                     </div>
                   </div>
