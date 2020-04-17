@@ -53,12 +53,12 @@ img {
   animation-iteration-count: 2;
   animation-timing-function: linear;
   background-color: rgb(185, 184, 184);
-  transition: 0.3s;
+  transition: 5s;
   -webkit-animation-name: input-border-effect;
   -webkit-animation-duration: 1.5s;
   -webkit-animation-delay: -0.1s;
   -webkit-animation-iteration-count: 2;
-  -webkit-animation-timing-function: linear;
+  -webkit-animation-timing-function: ease-in-out;
   -webkit-background-color: rgb(185, 184, 184);
   -webkit-transition: 0.5s;
 }
@@ -196,6 +196,7 @@ img {
   #input:hover {
     width: 26vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
 
   .error-paragraph {
@@ -222,6 +223,7 @@ img {
   #input:hover {
     width: 22vw;
     transform: translate(1px, -5px);
+    transition: transform 0.3s linear;
   }
   .error-paragraph {
     margin-left: 45%;
