@@ -264,9 +264,6 @@ server.use(express.urlencoded({ extended: true })); // to support URL-encoded bo
 /////Fetching Header Data/ Charts
 server.get("/", async (req, res) => {
   const chartsApi = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/0`;
-  const firstArtistApiCall = `https://api.deezer.com/artist/27`;
-  const secondArtistApiCall = `https://api.deezer.com/artist/29`;
-  const thirdArtistApiCall = `https://api.deezer.com/artist/30`;
 
   try {
     const exists = Cache.has("ApiData");
@@ -274,9 +271,6 @@ server.get("/", async (req, res) => {
     if (exists) {
       res.json({ ...Cache.get("ApiData") });
     } else {
-      const firstArtist = await (await fetch(firstArtistApiCall)).json();
-      const secondArtist = await (await fetch(secondArtistApiCall)).json();
-      const thirdArtist = await (await fetch(thirdArtistApiCall)).json();
       const charts = await (
         await fetch(chartsApi, {
           headers: { origin: "https://cors-anywhere.herokuapp.com/" },
@@ -284,9 +278,8 @@ server.get("/", async (req, res) => {
       ).json();
 
       const finalResult = {
-        HeaderData: [firstArtist, secondArtist, thirdArtist],
         ChartData: {
-          tracks: charts.tracks.data.slice(0, 5),
+          tracks: charts.tracks.data.slice(0, 8),
           albums: charts.albums.data.slice(0, 6),
           artists: charts.artists.data.slice(0, 7),
         },
@@ -370,6 +363,10 @@ async function saveSong(req, res, next) {
 }
 
 server.post("/search/saveSong", async (req, res, next) => {
+  saveSong(req, res, next);
+});
+
+server.post("/saveSong", async (req, res, next) => {
   saveSong(req, res, next);
 });
 

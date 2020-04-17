@@ -20,8 +20,16 @@ function SearchResult(props) {
   } = props;
 
   async function saveSong(...Args) {
-    if (!user.accesstoken) return console.log("You need to login to Save.");
-    else {
+    if (!user.accesstoken) {
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
+      return setState({
+        key: Args[0],
+        message: "You need to login to Save.",
+        displayAudioButton: "show-music-button",
+      });
+    } else {
       const result = await (
         await fetch("http://localhost:4020/search/saveSong", {
           method: "POST",
@@ -91,7 +99,7 @@ function SearchResult(props) {
       }, 3000);
     }
   }, [state]);
-
+  console.log(state);
   return (
     <React.Fragment>
       <br />
