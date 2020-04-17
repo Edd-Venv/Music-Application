@@ -25,7 +25,7 @@ function Chart() {
 
   return (
     <React.Fragment>
-      <div className="ChartsContainer">
+      <div className="charts-container">
         <Top5Albums albums={state.albums} isLoaded={state.isLoaded} />
         <Top5Tracks tracks={state.tracks} isLoaded={state.isLoaded} />
       </div>
