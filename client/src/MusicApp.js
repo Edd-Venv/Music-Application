@@ -28,16 +28,9 @@ function MusicApp(props) {
           <React.Fragment>
             <Search />
             <br />
-            <h2
-              style={{
-                fontSize: "1.8rem",
-                fontWeight: "bolder",
-                textAlign: "center",
-                color: "white",
-              }}
-            >
+            <h2 className="current-top-three-artists-heading">
               CURRENT TOP THREE ARTISTS
-              <hr style={{ width: "22%", margin: "0 auto" }} />
+              <hr style={{ margin: "0 auto" }} />
             </h2>
             <br />
             <Header />
@@ -51,44 +44,15 @@ function MusicApp(props) {
               }}
             >
               CHARTS
-              <hr style={{ width: "15%", margin: "0 auto" }} />
             </h1>
             <div style={{ width: "95%" }}>
               <span className="row">
-                <h2
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "bolder",
-                    marginLeft: "15%",
-                    width: "10%",
-                    color: "white",
-                  }}
-                >
+                <h2 className="top-5-albums-heading">
                   TOP 5 ALBUMS
                   <hr style={{ width: "100%" }} />
                 </h2>
-                <h2
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "bolder",
-                    marginLeft: "24%",
-                    width: "10%",
-                    color: "white",
-                  }}
-                >
-                  TOP 4 TRACKS
-                  <hr style={{ width: "100%" }} />
-                </h2>
-                <h2
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "bolder",
-                    marginLeft: "20%",
-                    width: "10%",
-                    color: "white",
-                  }}
-                >
-                  TOP 6 ARTISTS
+                <h2 className="top-5-tracks-heading">
+                  TOP 5 TRACKS
                   <hr style={{ width: "100%" }} />
                 </h2>
               </span>
