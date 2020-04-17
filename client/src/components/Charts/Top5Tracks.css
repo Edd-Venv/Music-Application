@@ -127,3 +127,16 @@ div.hide-top-5-audio-button {
     font-size: 1.8rem;
   }
 }
+@media (min-width: 2500px) {
+  #top-5-tracks-audio-player {
+    width: 15vw;
+  }
+  .top-5-tracks-image-container {
+    width: 100%;
+    margin-left: 10%;
+  }
+  .top-5-tracks-container {
+    max-width: 15vw;
+    font-size: 1.8rem;
+  }
+}

@@ -5,6 +5,9 @@ div.hide-music-button {
   display: none;
 }
 
+.my-songs-buttons-container {
+  margin-left: 2%;
+}
 .my-songs-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
@@ -26,7 +29,10 @@ div.hide-music-button {
   }
   #my-songs-artist-image {
     max-width: 50vw;
-    margin-left: 3.3%;
+    margin-left: 4%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 5%;
   }
 }
 @media (min-width: 375px) {
@@ -38,7 +44,10 @@ div.hide-music-button {
   }
   #my-songs-artist-image {
     max-width: 50vw;
-    margin-left: 3.3%;
+    margin-left: 4.2%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 5%;
   }
 }
 @media (min-width: 425px) {
@@ -50,40 +59,71 @@ div.hide-music-button {
   }
   #my-songs-artist-image {
     max-width: 49vw;
-    margin-left: 3.3%;
+    margin-left: 4.5%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 5%;
   }
 }
 @media (min-width: 768px) {
   .gird-card-size {
     width: 50vw;
+    margin-left: 2%;
   }
   #my-songs-audio-player {
     width: 49vw;
   }
   #my-songs-artist-image {
     max-width: 33vw;
-    margin-left: 3.3%;
+    margin-left: 11%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 4%;
   }
 }
 @media (min-width: 1024px) {
   .gird-card-size {
-    width: 25.5vw;
+    width: 35vw;
   }
   #my-songs-audio-player {
-    width: 25vw;
+    width: 34vw;
   }
   #my-songs-artist-image {
     max-width: 22vw;
-    margin-left: 5%;
+    margin-left: 11%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 5.2%;
   }
 }
 
+@media (min-width: 1200px) {
+  .gird-card-size {
+    width: 30vw;
+  }
+  #my-songs-audio-player {
+    width: 29vw;
+  }
+  #my-songs-artist-image {
+    max-width: 13vw;
+    margin-left: 10%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 4.5%;
+  }
+}
 @media (min-width: 1440px) {
   .gird-card-size {
     width: 19vw;
   }
+  #my-songs-audio-player {
+    width: 18vw;
+  }
   #my-songs-artist-image {
     max-width: 13vw;
-    margin-left: 3.8%;
+    margin-left: 10%;
+  }
+  .my-songs-buttons-container {
+    margin-left: 4%;
   }
 }

@@ -86,12 +86,14 @@ const MySongs = (props) => {
           You need to login.
         </h2>
       ) : user.accesstoken && content.data === undefined ? (
-        <div
-          className="spinner-grow text-dark"
-          role="status"
-          style={{ margin: "auto" }}
-        >
-          <span className="sr-only">Loading...</span>
+        <div style={{ display: "flex", maxWidth: "1000px" }}>
+          <div
+            className="spinner-grow text-dark"
+            role="status"
+            style={{ margin: "auto" }}
+          >
+            <span className="sr-only">Loading...</span>
+          </div>
         </div>
       ) : user.accesstoken && content.data.length === 0 ? (
         <h2 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}>
@@ -107,15 +109,16 @@ const MySongs = (props) => {
                 key={info.song_key}
               >
                 <div className="row no-gutters">
-                  <div id="my-songs-artist-image">
-                    <img
-                      alt="loading"
-                      src={info.artist_image}
-                      className="img-thumbnail"
-                      style={{ width: "100%" }}
-                    />
+                  <div className="col-md-4">
+                    <div id="my-songs-artist-image">
+                      <img
+                        alt="loading"
+                        src={info.artist_image}
+                        className="img-thumbnail"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
                   </div>
-
                   <div className="col-md-8">
                     <div className="card-body" style={{ marginLeft: "2%" }}>
                       <h5 className="card-title">
@@ -132,42 +135,44 @@ const MySongs = (props) => {
                             {info.explicit_lyrics === true ? "Yes" : "No"}
                           </small>
                         </p>
-                        <button
-                          className="btn btn-danger"
-                          onClick={deleteSong.bind(this, [
-                            info.song_title,
-                            info.song_key,
-                          ])}
-                        >
-                          Delete
-                        </button>
-                        {info.song_key === content.key &&
-                        content.musicAudioButtonClicked === true ? (
-                          <div className="top-4-tracks-audio-player">
-                            <audio
-                              id="my-songs-audio-player"
-                              src={info.song}
-                              volume="0.5"
-                              controls
-                            />
-                          </div>
-                        ) : (
-                          <div className={content.displayAudioButton}>
-                            <button
-                              className="btn btn-dark"
-                              type="submit"
-                              onClick={musicAudioButton.bind(this, [
-                                info.song_key,
-                                true,
-                              ])}
-                            >
-                              Preview Song
-                              <i className="fab fa-google-play" />
-                            </button>
-                          </div>
-                        )}
                       </div>
                     </div>
+                  </div>
+                  <div className="my-songs-buttons-container">
+                    <button
+                      className="btn btn-danger"
+                      onClick={deleteSong.bind(this, [
+                        info.song_title,
+                        info.song_key,
+                      ])}
+                    >
+                      Delete
+                    </button>
+                    {info.song_key === content.key &&
+                    content.musicAudioButtonClicked === true ? (
+                      <div className="top-4-tracks-audio-player">
+                        <audio
+                          id="my-songs-audio-player"
+                          src={info.song}
+                          volume="0.5"
+                          controls
+                        />
+                      </div>
+                    ) : (
+                      <div className={content.displayAudioButton}>
+                        <button
+                          className="btn btn-dark"
+                          type="submit"
+                          onClick={musicAudioButton.bind(this, [
+                            info.song_key,
+                            true,
+                          ])}
+                        >
+                          Preview Song
+                          <i className="fab fa-google-play" />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
