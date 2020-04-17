@@ -1,3 +1,9 @@
+#header-button {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: none;
+}
 .flex-containerHeader {
   display: flex;
   justify-content: space-between;
@@ -71,7 +77,7 @@ img {
 /*From a minimum width and bigger*/
 @media (min-width: 320px) {
   .Header1 {
-    width: 25.5%;
+    width: 28%;
   }
   @keyframes header1 {
     from {
@@ -82,7 +88,7 @@ img {
     }
   }
   .Header2 {
-    width: 25.5%;
+    width: 28%;
   }
   @keyframes header2 {
     from {
@@ -93,7 +99,7 @@ img {
     }
   }
   .Header3 {
-    width: 25.5%;
+    width: 28%;
   }
   @keyframes header3 {
     from {
@@ -105,8 +111,74 @@ img {
   }
 }
 @media (min-width: 375px) {
+  .Header1 {
+    width: 28%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 38.7%;
+    }
+  }
+  .Header2 {
+    width: 28%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 28%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
 }
 @media (min-width: 425px) {
+  .Header1 {
+    width: 28%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 39%;
+    }
+  }
+  .Header2 {
+    width: 28%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 28%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 67%;
+    }
+  }
 }
 @media (min-width: 768px) {
   .Header1 {
@@ -117,7 +189,7 @@ img {
       left: 0%;
     }
     to {
-      left: 41%;
+      left: 41.3%;
     }
   }
   .Header2 {
@@ -153,7 +225,7 @@ img {
       left: 0%;
     }
     to {
-      left: 41.5%;
+      left: 43.5%;
     }
   }
   .Header2 {
@@ -175,10 +247,47 @@ img {
       right: 0%;
     }
     to {
-      right: 67%;
+      right: 65%;
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .Header1 {
+    width: 20.5%;
+  }
+  @keyframes header1 {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 45%;
+    }
+  }
+  .Header2 {
+    width: 20.5%;
+  }
+  @keyframes header2 {
+    from {
+      left: 10%;
+    }
+    to {
+      left: 67%;
+    }
+  }
+  .Header3 {
+    width: 20.5%;
+  }
+  @keyframes header3 {
+    from {
+      right: 0%;
+    }
+    to {
+      right: 63%;
+    }
+  }
+}
+
 @media (min-width: 1440px) {
   .Header1 {
     width: 20.5%;
