@@ -99,7 +99,7 @@ function SearchResult(props) {
       }, 3000);
     }
   }, [state]);
-  console.log(state);
+
   return (
     <React.Fragment>
       <br />
@@ -123,13 +123,15 @@ function SearchResult(props) {
               ×
             </div>
             <div className="music-video-play-button-container">
-              <button
-                className="btn btn-dark"
-                onClick={handleMusicVideoPlayButton}
-              >
-                Music Video
-                <i className="fab fa-google-play" />
-              </button>
+              {results.video[0].Type === "unknown" ? null : (
+                <button
+                  className="btn btn-dark"
+                  onClick={handleMusicVideoPlayButton}
+                >
+                  Music Video
+                  <i className="fab fa-google-play" />
+                </button>
+              )}
             </div>
             <br />
             <br />
@@ -239,50 +241,3 @@ function SearchResult(props) {
 }
 
 export default SearchResult;
-/*
-
- <div className={buttonDisplay}>
-                        <button
-                          className="btn btn-dark"
-                          type="submit"
-                          style={{
-                            width: "50px",
-                            marginLeft: "0%",
-                          }}
-                          onClick={handleButtonClick}
-                        >
-                          <i className="fab fa-google-play" />
-                        </button>
-                      </div>
-
-{Test === "unknown" ? (
-                  <p
-                    style={{
-                      fontSize: "1.2em",
-                      color: "black",
-                      marginLeft: "3%",
-                      fontWeight: "bold"
-                    }}
-                  >
-                    VIDEO NOT IN DATABASE
-                  </p>
-                ) : (
-                  <React.Fragment>
-                    <h5
-                      style={{
-                        fontSize: "1.2em",
-                        color: "black",
-                        fontWeight: "bold",
-                        marginLeft: "8%"
-                      }}
-                    >
-                      Hit Video
-                    </h5>
-                    <iframe
-                      src={Video}
-                      className="iframe"
-                      title="This is a unique title prop"
-                    />
-                  </React.Fragment>
-                )}
-*/

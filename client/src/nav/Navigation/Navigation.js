@@ -23,7 +23,7 @@ const Navigation = ({ logOutCallback }) => {
         <p
           className="nav-link"
           onClick={logOutCallback}
-          style={{ paddingTop: "1.3rem" }}
+          style={{ paddingTop: "1.3rem", cursor: "pointer" }}
           id="logoutButton"
         >
           LogOut
