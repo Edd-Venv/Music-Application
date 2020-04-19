@@ -12,7 +12,6 @@ export const UserContext = React.createContext([]);
 function App() {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
-
   const logOutCallback = async () => {
     await fetch("http://localhost:4020/logout", {
       method: "POST",
@@ -56,4 +55,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

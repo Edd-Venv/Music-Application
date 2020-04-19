@@ -7,7 +7,6 @@ function Chart() {
   const [state, setState] = useState({
     isLoaded: false,
   });
-
   useEffect(() => {
     fetch("http://localhost:4020/")
       .then((response) => {
@@ -33,5 +32,4 @@ function Chart() {
   );
 }
 
-export default Chart;
-/*<Top6Artists artists={state.artists} isLoaded={state.isLoaded} /> */
+export default React.memo(Chart);
