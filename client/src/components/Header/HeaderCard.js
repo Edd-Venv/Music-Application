@@ -4,7 +4,6 @@ import "./HeaderCard.css";
 const HeaderCard = (props) => {
   const { state, handleClose, saveSong, musicAudioButton } = props;
 
-  //console.log("HeaderCard", state);
   return (
     <div id="header-card">
       {state.DummyData ? (
