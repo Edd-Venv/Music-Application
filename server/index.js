@@ -383,9 +383,7 @@ server.get("/MySongs", async (req, res) => {
       });
     }
   } catch (err) {
-    res.json({
-      error: `${err.message}`,
-    });
+    res.redirect("http://localhost:4020/login");
   }
 });
 
