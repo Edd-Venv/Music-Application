@@ -3,6 +3,7 @@ import "./Top5Albums.css";
 
 function Top5Albums(props) {
   const { albums, isloaded } = props;
+
   return (
     <div className="top-5-albums-container">
       {isloaded === false || albums === undefined
@@ -48,4 +49,4 @@ function Top5Albums(props) {
     </div>
   );
 }
-export default Top5Albums;
+export default React.memo(Top5Albums);

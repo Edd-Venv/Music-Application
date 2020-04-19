@@ -97,4 +97,4 @@ function Top5Tracks(props) {
     </div>
   );
 }
-export default Top5Tracks;
+export default React.memo(Top5Tracks);
