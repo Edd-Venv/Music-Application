@@ -3,7 +3,6 @@ import "./SearchResult.css";
 
 const MusicVideo = (props) => {
   const { results, handleMusicVideoCloseButton } = props;
-
   return (
     <div id="search-results-music-video-model" key={results.video[0].yID}>
       <div className="music-video-container">
