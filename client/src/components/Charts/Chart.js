@@ -13,7 +13,6 @@ function Chart() {
         return response.json();
       })
       .then((result) => {
-        console.log(result.ChartData.albums);
         setState({
           isLoaded: true,
           tracks: result.ChartData.tracks.slice(0, 5),

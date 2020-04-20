@@ -82,7 +82,7 @@ const MySongs = (props) => {
     : content.data.filter((song) =>
         song.artist_name.toLowerCase().includes(currentFilterText.toLowerCase())
       );
-  console.log(content);
+
   return (
     <React.Fragment>
       <Navigation logOutCallback={props.logOutCallback} />
