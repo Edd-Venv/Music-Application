@@ -43,7 +43,7 @@ function Top5Tracks(props) {
                   <div className="col-md-4">
                     <div className="top-5-tracks-image-container">
                       <img
-                        src={track.artist.picture}
+                        src={track.artist.picture_xl}
                         className="img-thumbnail"
                         alt="..."
                         style={{ width: "100%" }}
