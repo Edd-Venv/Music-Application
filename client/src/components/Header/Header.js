@@ -5,6 +5,7 @@ import { UserContext } from "../../App.js";
 import "./Header.css";
 
 function Header() {
+  console.log("header");
   const [user] = useContext(UserContext);
   const [state, setState] = useState({
     isLoaded: false,
@@ -97,16 +98,16 @@ function Header() {
         setCardContent({ ...cardContent, message: "Save" });
       }, 3000);
     }
-  }, [cardContent]);
+  }, [cardContent.message]);
 
   const showHeaderCard = (data) => {
     if (document.getElementById("header-card") !== null) {
-      setCardContent({ ...data });
+      setCardContent({ ...data, message: "Save" });
       document.getElementById("header-card").style.display = "block";
     }
   };
   const handleClose = () => {
-    setCardContent({ ...DummyData });
+    setCardContent({ ...DummyData, message: "Save" });
     document.getElementById("header-card").style.display = "none";
   };
 
@@ -135,7 +136,7 @@ function Header() {
               <img
                 src={state.data[0].artist.picture_xl}
                 className="img-thumbnail"
-                alt="Artist Picture"
+                alt="Artist"
                 id="box"
               />
             </button>
@@ -148,7 +149,7 @@ function Header() {
               <img
                 src={state.data[1].artist.picture_xl}
                 className="img-thumbnail"
-                alt="Artist Picture"
+                alt="Artist"
                 id="box"
               />
             </button>
@@ -161,7 +162,7 @@ function Header() {
               <img
                 src={state.data[2].artist.picture_xl}
                 className="img-thumbnail"
-                alt="Artist Picture"
+                alt="Artist"
                 id="box"
               />
             </button>
