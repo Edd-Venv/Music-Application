@@ -5,7 +5,6 @@ import { UserContext } from "../../App.js";
 import "./Header.css";
 
 function Header() {
-  console.log("header");
   const [user] = useContext(UserContext);
   const [state, setState] = useState({
     isLoaded: false,
