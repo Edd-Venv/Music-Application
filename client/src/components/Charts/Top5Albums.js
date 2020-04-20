@@ -15,7 +15,7 @@ function Top5Albums(props) {
                   <div className="col-md-4">
                     <div className="top-5-albums-image-container">
                       <img
-                        src={album.cover}
+                        src={album.cover_xl}
                         className="img-thumbnail"
                         alt="..."
                         style={{ width: "100%" }}
