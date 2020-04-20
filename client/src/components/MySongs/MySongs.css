@@ -11,6 +11,7 @@ div.hide-music-button {
 .my-songs-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  margin-top: 3%;
 }
 
 #my-songs-item:hover {

@@ -133,9 +133,9 @@ function Header() {
               onClick={showHeaderCard.bind(this, state.data[0])}
             >
               <img
-                src={state.data[0].artist.picture}
+                src={state.data[0].artist.picture_xl}
                 className="img-thumbnail"
-                alt=""
+                alt="Artist Picture"
                 id="box"
               />
             </button>
@@ -146,9 +146,9 @@ function Header() {
               onClick={showHeaderCard.bind(this, state.data[1])}
             >
               <img
-                src={state.data[1].artist.picture}
+                src={state.data[1].artist.picture_xl}
                 className="img-thumbnail"
-                alt=""
+                alt="Artist Picture"
                 id="box"
               />
             </button>
@@ -159,9 +159,9 @@ function Header() {
               onClick={showHeaderCard.bind(this, state.data[2])}
             >
               <img
-                src={state.data[2].artist.picture}
+                src={state.data[2].artist.picture_xl}
                 className="img-thumbnail"
-                alt=""
+                alt="Artist Picture"
                 id="box"
               />
             </button>
