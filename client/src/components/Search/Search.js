@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import initialState from "./DummyData.js";
 import SearchForm from "./SearchForm.js";
 import SearchResult from "./SearchResult.js";
+import { BaseUrl } from "../../App.js";
 
 function Search() {
   const [state, setState] = useState({ ...initialState });
@@ -28,7 +29,7 @@ function Search() {
 
   const handleSearch = (text) => {
     (async function fetchData() {
-      await fetch("http://localhost:4020/search", {
+      await fetch(`${BaseUrl}/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

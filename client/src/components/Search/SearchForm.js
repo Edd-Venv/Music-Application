@@ -10,6 +10,7 @@ const SearchForm = React.memo((props) => {
     setText("");
     if (document.getElementById("top-5-tracks-audio-player") !== null)
       document.getElementById("top-5-tracks-audio-player").pause();
+    document.getElementById("input-area").blur();
     document.getElementById("search-results-model").style.display = "block";
   };
 
