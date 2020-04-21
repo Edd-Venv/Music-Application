@@ -12,7 +12,7 @@ const MusicVideo = (props) => {
         </p>
 
         <iframe
-          src={`https://www.youtube.com/watch?v=${results.video[0].yID}`}
+          src={`https://www.youtube-nocookie.com/embed/${results.video[0].yID}`}
           className="img-thumbnail"
           id="search-result-music-video-iframe"
           title={results.video[0].name}
