@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import "./SearchResult.css";
 import { UserContext } from "../../App.js";
 import MusicVideo from "./SearchResultVideo.js";
+import { BaseUrl } from "../../App.js";
 
 function SearchResult(props) {
   let timeOut;
@@ -31,7 +32,7 @@ function SearchResult(props) {
       });
     } else {
       const result = await (
-        await fetch("http://localhost:4020/search/saveSong", {
+        await fetch(`${BaseUrl}/search/saveSong`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +66,7 @@ function SearchResult(props) {
 
   async function musicAudioButton(Args) {
     const result = await (
-      await fetch("http://localhost:4020/buttonUI", {
+      await fetch(`${BaseUrl}/buttonUI`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
