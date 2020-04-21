@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Navigation from "../../nav/Navigation/Navigation.js";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import "./MySongs.css";
 
 const MySongs = (props) => {
@@ -12,7 +12,7 @@ const MySongs = (props) => {
 
   async function fetchSongs() {
     const result = await (
-      await fetch("http://localhost:4020/MySongs", {
+      await fetch(`${BaseUrl}/MySongs`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const MySongs = (props) => {
   async function deleteSong(Args) {
     try {
       if (user.accesstoken)
-        await fetch("http://localhost:4020/MySongs/Delete", {
+        await fetch(`${BaseUrl}/MySongs/Delete`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const MySongs = (props) => {
   }
   async function musicAudioButton(Args) {
     const result = await (
-      await fetch("http://localhost:4020/buttonUI", {
+      await fetch(`${BaseUrl}/buttonUI`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

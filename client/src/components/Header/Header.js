@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import HeaderCard from "./HeaderCard.js";
 import { DummyData } from "./DummyData.js";
-import { UserContext } from "../../App.js";
+import { UserContext, BaseUrl } from "../../App.js";
 import "./Header.css";
 
 function Header() {
@@ -29,7 +29,7 @@ function Header() {
       });
     else {
       const result = await (
-        await fetch("http://localhost:4020/saveSong", {
+        await fetch(`${BaseUrl}/saveSong`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function Header() {
 
   async function musicAudioButton(Args) {
     const result = await (
-      await fetch("http://localhost:4020/buttonUI", {
+      await fetch(`${BaseUrl}/buttonUI`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +111,7 @@ function Header() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4020/")
+    fetch(`${BaseUrl}/`)
       .then((response) => {
         return response.json();
       })
