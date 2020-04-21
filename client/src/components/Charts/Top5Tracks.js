@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BaseUrl } from "../../App.js";
 import "./Top5Tracks.css";
 
 function Top5Tracks(props) {
@@ -9,7 +10,7 @@ function Top5Tracks(props) {
 
   async function buttonUI(key) {
     const result = await (
-      await fetch("http://localhost:4020/buttonUI", {
+      await fetch(`${BaseUrl}/buttonUI`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

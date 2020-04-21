@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Top5Tracks from "./Top5Tracks.js";
+import { BaseUrl } from "../../App.js";
 import "./Chart.css";
 import Top5Albums from "./Top5Albums.js";
 
@@ -8,7 +9,7 @@ function Chart() {
     isLoaded: false,
   });
   useEffect(() => {
-    fetch("http://localhost:4020/")
+    fetch(`${BaseUrl}/`)
       .then((response) => {
         return response.json();
       })

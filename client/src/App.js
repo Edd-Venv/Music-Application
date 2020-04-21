@@ -8,12 +8,13 @@ import "./App.css";
 import MySongs from "./components/MySongs/MySongs.js";
 
 export const UserContext = React.createContext([]);
+export const BaseUrl = "http://localhost:4020";
 
 function App() {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const logOutCallback = async () => {
-    await fetch("http://localhost:4020/logout", {
+    await fetch(`${BaseUrl}/logout`, {
       method: "POST",
       credentials: "include", // Needed to include the cookie
     });
@@ -26,7 +27,7 @@ function App() {
   useEffect(() => {
     async function checkRefreshToken() {
       const result = await (
-        await fetch("http://localhost:4020/refresh_token", {
+        await fetch(`${BaseUrl}/refresh_token`, {
           method: "POST",
           credentials: "include", // Needed to include the cookie
           headers: {
