@@ -3,7 +3,7 @@ import { UserContext, BaseUrl } from "../../App.js";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
-  const [name, setName] = useState("");
+  const [name, setName] = useState("GUEST");
 
   async function getName() {
     if (user.accesstoken) {
@@ -24,7 +24,7 @@ const UserLogo = (props) => {
       }
     } else return setName("GUEST");
   }
-  console.log("UserLogo", user);
+
   useEffect(() => {
     getName();
   }, [user.accesstoken]);
