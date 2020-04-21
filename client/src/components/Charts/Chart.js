@@ -9,7 +9,7 @@ function Chart() {
     isLoaded: false,
   });
   useEffect(() => {
-    fetch(`${BaseUrl}/`)
+    fetch(`${BaseUrl}/ChartData`)
       .then((response) => {
         return response.json();
       })

@@ -111,7 +111,7 @@ function Header() {
   };
 
   useEffect(() => {
-    fetch(`${BaseUrl}/`)
+    fetch(`${BaseUrl}/ChartData`)
       .then((response) => {
         return response.json();
       })

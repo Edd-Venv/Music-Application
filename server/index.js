@@ -262,7 +262,7 @@ server.use(express.urlencoded({ extended: true })); // to support URL-encoded bo
 
 ////////////////////////////////////////////////////////////////////////////API CALLS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////Fetching Header Data/ Charts
-server.get("/", async (req, res) => {
+server.get("/ChartData", async (req, res) => {
   const chartsApi = `https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/0`;
 
   try {
