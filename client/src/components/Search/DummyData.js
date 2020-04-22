@@ -52,6 +52,8 @@ const initialState = {
     {
       Name: "Kendrick Lamar",
       Type: "music",
+      wTeaser:
+        "Kendrick Lamar Duckworth (born June 17, 1987) is an American rapper, songwriter, and record producer. He is regarded by many critics and contemporaries as one of the most important and influential rappers of his generation, and as one of the greatest rappers of all time.Raised in Compton, California, Lamar embarked on his musical career as a teenager under the stage name K-Dot, releasing a mixtape that garnered local attention and led to his signing with indie record label Top Dawg Entertainment (TDE). He began to gain recognition in 2010 after his first retail release, Overly Dedicated. The following year, he independently released his first studio album, Section.80, which included his debut single HiiiPoWeR. By that time, he had amassed a large online following and collaborated with several prominent hip hop artists, including The Game, Busta Rhymes, and Snoop Dogg.",
       wUrl: "http://en.wikipedia.org/wiki/Kendrick_Lamar",
       yUrl: "https://www.youtube-nocookie.com/embed/tvTRZJ-4EyI",
       yID: "tvTRZJ-4EyI",
