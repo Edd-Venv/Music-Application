@@ -11,20 +11,28 @@ function Search() {
     document.getElementById("search-results-model").style.display = "none";
   };
 
-  const handleMusicVideoPlayButton = () => {
-    if (document.getElementById("search-result-audio-player") !== null)
-      document.getElementById("search-result-audio-player").pause();
-    document.querySelector("iframe").src = state.video[0].yUrl;
-    document.getElementById("search-results-music-video-model").style.display =
-      "block";
-    document.getElementById("search-results-model").style.zIndex = 0;
+  const toggleArtistInfoModal = () => {
+    document.getElementById("artist-info").classList.toggle("visible");
   };
 
-  const handleMusicVideoCloseButton = () => {
-    document.querySelector("iframe").src = "";
-    document.getElementById("search-results-music-video-model").style.display =
-      "none";
-    document.getElementById("search-results-model").style.zIndex = 1;
+  const toggleArtistInfoModalBackDrop = () => {
+    document.getElementById("backdrop").classList.toggle("visible");
+  };
+
+  const hanldeAristInfoButtonAndBackDrop = () => {
+    toggleArtistInfoModalBackDrop();
+    toggleArtistInfoModal();
+  };
+  const handleShowArtistInfoButton = () => {
+    if (document.getElementById("search-result-audio-player") !== null)
+      document.getElementById("search-result-audio-player").pause();
+    hanldeAristInfoButtonAndBackDrop();
+  };
+
+  const handleHideArtistInfoButton = () => {
+    if (document.getElementById("search-result-audio-player") !== null)
+      document.getElementById("search-result-audio-player").play();
+    hanldeAristInfoButtonAndBackDrop();
   };
 
   const handleSearch = (text) => {
@@ -53,8 +61,8 @@ function Search() {
       <SearchResult
         results={state}
         handleClose={handleResultsCloseButton}
-        handleMusicVideoPlayButton={handleMusicVideoPlayButton}
-        handleMusicVideoCloseButton={handleMusicVideoCloseButton}
+        handleShowArtistInfoButton={handleShowArtistInfoButton}
+        handleHideArtistInfoButton={handleHideArtistInfoButton}
       />
     </React.Fragment>
   );
