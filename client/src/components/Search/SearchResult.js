@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./SearchResult.css";
 import { UserContext } from "../../App.js";
-import MusicVideo from "./SearchResultVideo.js";
+import ArtistInfo from "./ArtistInfo.js";
 import { BaseUrl } from "../../App.js";
 
 function SearchResult(props) {
@@ -16,8 +16,8 @@ function SearchResult(props) {
   const {
     results,
     handleClose,
-    handleMusicVideoCloseButton,
-    handleMusicVideoPlayButton,
+    handleHideArtistInfoButton,
+    handleShowArtistInfoButton,
   } = props;
 
   async function saveSong(...Args) {
@@ -104,9 +104,9 @@ function SearchResult(props) {
   return (
     <React.Fragment>
       <br />
-      <MusicVideo
+      <ArtistInfo
         results={results}
-        handleMusicVideoCloseButton={handleMusicVideoCloseButton}
+        handleHideArtistInfoButton={handleHideArtistInfoButton}
       />
       {results === undefined ? (
         <div>
@@ -123,14 +123,14 @@ function SearchResult(props) {
             <div onClick={handleClose} className="search-results-close-button">
               ×
             </div>
-            <div className="music-video-play-button-container">
+            <div className="artist-info-button-container">
               {results.video[0].Type === "unknown" ? null : (
                 <button
                   className="btn btn-dark"
-                  onClick={handleMusicVideoPlayButton}
+                  onClick={handleShowArtistInfoButton}
                 >
-                  Music Video
-                  <i className="fab fa-google-play" />
+                  Artist Infomation
+                  <i className="fas fa-info" />
                 </button>
               )}
             </div>
