@@ -9,12 +9,13 @@ function Header() {
   const [state, setState] = useState({
     isLoaded: false,
   });
+
   const [cardContent, setCardContent] = useState({
+    ...DummyData,
     isLoaded: false,
     key: 0,
     message: "Save",
     displayAudioButton: "show-music-button",
-    ...DummyData,
   });
 
   let timeOut;
