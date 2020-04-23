@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BaseUrl } from "../../App.js";
 import "./Top5Tracks.css";
 
 function Top5Tracks(props) {
@@ -8,28 +7,35 @@ function Top5Tracks(props) {
     buttonDisplay: "show-top-5-audio-button",
   });
 
-  async function buttonUI(key) {
-    const result = await (
-      await fetch(`${BaseUrl}/buttonUI`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          song_key: key,
-        }),
-      })
-    ).json();
+  const handleAudioPlayer = (...Args) => {
+    if (!document.getElementById("audio-tag-" + Args[0])) {
+      const audioPlayer = document.createElement("audio");
+      audioPlayer.id = "audio-tag-" + Args[0];
+      audioPlayer.className = "top-5-tracks-audio-player";
 
-    if (!result.error) {
-      setState({
-        key: result.key,
-        buttonDisplay: "show-top-5-audio-button",
-      });
-    } else {
-      console.log("message", result.error);
+      if (document.getElementById("audio-tag-" + state.key)) {
+        document
+          .getElementById("div-" + state.key)
+          .removeChild(document.getElementById("audio-tag-" + state.key));
+      }
+
+      if (document.getElementById("div-" + Args[0])) {
+        const hostElement = document.getElementById("div-" + Args[0]);
+        hostElement.appendChild(audioPlayer);
+
+        audioPlayer.style.position = "absolute";
+        audioPlayer.style.left = 0 + "px";
+        audioPlayer.style.top = -3 + "px";
+        audioPlayer.src = Args[1];
+        audioPlayer.volume = "0.5";
+        audioPlayer.controls = true;
+      }
     }
-  }
+    setState({
+      key: Args[0],
+      buttonDisplay: "show-top-5-audio-button",
+    });
+  };
 
   const { tracks, isloaded } = props;
 
@@ -70,19 +76,30 @@ function Top5Tracks(props) {
                       </p>
                     </div>
                   </div>
-                  <div className="col-md-4" style={{ marginLeft: "15px" }}>
+                  <div
+                    className="col-md-4"
+                    style={{ marginLeft: "15px" }}
+                    id={"div-" + track.id}
+                  >
                     {track.id === state.key ? (
-                      <audio
-                        id="top-5-tracks-audio-player"
-                        src={track.preview}
-                        volume="0.5"
-                        controls
-                      />
+                      <button
+                        className="btn btn-dark"
+                        style={{
+                          backgroundColor: "transparent",
+                        }}
+                      >
+                        Preview Song
+                        <i className="fab fa-google-play" />
+                      </button>
                     ) : (
                       <div className={state.buttonDisplay}>
                         <button
                           className="btn btn-dark"
-                          onClick={buttonUI.bind(this, track.id)}
+                          onClick={handleAudioPlayer.bind(
+                            this,
+                            track.id,
+                            track.preview
+                          )}
                         >
                           Preview Song
                           <i className="fab fa-google-play" />

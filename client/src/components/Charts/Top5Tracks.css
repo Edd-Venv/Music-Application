@@ -33,7 +33,7 @@ div.hide-top-5-audio-button {
 }
 /*END OF BOX STYLING*/
 @media (min-width: 320px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 40vw;
   }
   .top-5-tracks-image-container {
@@ -47,7 +47,7 @@ div.hide-top-5-audio-button {
   }
 }
 @media (min-width: 375px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 40vw;
   }
   .top-5-tracks-image-container {
@@ -61,7 +61,7 @@ div.hide-top-5-audio-button {
   }
 }
 @media (min-width: 425px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 40vw;
   }
   .top-5-tracks-image-container {
@@ -75,7 +75,7 @@ div.hide-top-5-audio-button {
   }
 }
 @media (min-width: 768px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 43.5vw;
   }
   .top-5-tracks-image-container {
@@ -89,7 +89,7 @@ div.hide-top-5-audio-button {
 }
 
 @media (min-width: 1024px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 40.7vw;
   }
   .top-5-tracks-image-container {
@@ -102,7 +102,7 @@ div.hide-top-5-audio-button {
   }
 }
 @media (min-width: 1200px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 27.5vw;
   }
   .top-5-tracks-image-container {
@@ -115,7 +115,7 @@ div.hide-top-5-audio-button {
   }
 }
 @media (min-width: 1440px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 30vw;
   }
   .top-5-tracks-image-container {
@@ -128,7 +128,7 @@ div.hide-top-5-audio-button {
   }
 }
 @media (min-width: 2500px) {
-  #top-5-tracks-audio-player {
+  .top-5-tracks-audio-player {
     width: 15vw;
   }
   .top-5-tracks-image-container {

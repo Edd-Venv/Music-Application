@@ -104,6 +104,11 @@ function Header() {
     if (document.getElementById("header-card") !== null) {
       setCardContent({ ...data, message: "Save" });
       document.getElementById("header-card").style.display = "block";
+
+      const audios = document.getElementsByTagName("audio");
+      for (let i = 0; i < audios.length; i++) {
+        audios[i].pause();
+      }
     }
   };
   const handleClose = () => {
