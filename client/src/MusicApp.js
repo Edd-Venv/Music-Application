@@ -37,6 +37,8 @@ function MusicApp(props) {
             <br />
             <h1
               style={{
+                fontFamily: "Oswald, sans-serif",
+                letterSpacing: "0.25rem",
                 fontSize: "1.8rem",
                 fontWeight: "bolder",
                 textAlign: "center",

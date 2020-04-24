@@ -180,7 +180,10 @@ function SearchResult(props) {
                         </div>
                         <div className="col-md-8">
                           <div className="card-body" id="search-result-font">
-                            <h5 className="card-title">
+                            <h5
+                              className="card-title"
+                              style={{ fontFamily: "Oswald, sans-serif" }}
+                            >
                               <big>
                                 <strong>{result.artist.name}</strong>
                               </big>

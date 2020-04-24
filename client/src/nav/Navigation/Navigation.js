@@ -129,7 +129,12 @@ const Navigation = ({ logOutCallback }) => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light"
+        style={{
+          fontFamily: "Roboto Condensed, sans-serif",
+        }}
+      >
         <button
           className="navbar-toggler"
           type="button"
