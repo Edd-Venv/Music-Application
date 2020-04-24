@@ -2,7 +2,7 @@ import React from "react";
 import "./HeaderCard.css";
 
 const HeaderCard = (props) => {
-  const { state, handleClose, saveSong, musicAudioButton } = props;
+  const { state, handleClose, saveSong, handleAudioPlayer } = props;
 
   return (
     <div id="header-card">
@@ -21,7 +21,11 @@ const HeaderCard = (props) => {
           <p onClick={handleClose} className="close-header-card">
             ×
           </p>
-          <div className="card mb-3 header-card" key={state.id}>
+          <div
+            className="card mb-3 header-card"
+            id={"header-card-" + state.id}
+            key={state.id}
+          >
             <div className="row no-gutters">
               <div className="col-md-4">
                 <div id="header-artist-image">
@@ -52,7 +56,10 @@ const HeaderCard = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4 header-card-buttons-container">
+              <div
+                className="col-md-4 header-card-buttons-container"
+                id={"header-card-div-" + state.id}
+              >
                 <button
                   className="btn btn-primary"
                   onClick={saveSong.bind(
@@ -68,20 +75,24 @@ const HeaderCard = (props) => {
                 >
                   {state.message ? state.message : "Save"}
                 </button>
-                {state.id && state.musicAudioButtonClicked === true ? (
-                  <audio
-                    id="header-card-audio-player"
-                    src={state.preview}
-                    volume="0.5"
-                    controls
-                  />
+                <div id={"header-card-div-" + state.id} />
+                {state.musicAudioButtonClicked === true ? (
+                  <button className="dummy-button btn">
+                    Preview Song
+                    <i className="fab fa-google-play" />
+                  </button>
                 ) : (
                   <div className={state.displayAudioButton}>
                     <button
                       className="btn btn-dark"
-                      onClick={musicAudioButton.bind(this, [state.id, true])}
+                      onClick={handleAudioPlayer.bind(
+                        this,
+                        state.id,
+                        true,
+                        state.preview
+                      )}
                     >
-                      Song Preview
+                      Preview Song
                       <i className="fab fa-google-play" />
                     </button>
                   </div>
