@@ -53,7 +53,7 @@ server.post("/register", async (req, res) => {
     const doesUserExist = checkDB.rows[0];
 
     if (doesUserExist !== undefined)
-      throw new Error(`User Name " ${person_name} " is TAKEN.`);
+      throw new Error(`USER NAME " ${person_name} " IS TAKEN.`);
 
     // 2. If not user exist already, hash the password
     const hashedPassword = await hash(password, 10);
@@ -83,7 +83,7 @@ server.post("/login", async (req, res) => {
     const doesUserExist = checkDB.rows[0];
 
     if (!doesUserExist)
-      throw new Error(`" ${person_name} " is an INVALID USER.`);
+      throw new Error(`" ${person_name} " IS AN INVALID USER.`);
 
     // 2. Compare crypted password and see if it checks out. Send error if not
     const user = doesUserExist;
