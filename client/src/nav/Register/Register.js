@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import handleLoginAndResgister from "../Utils/RegisterFunc.js";
+import handleToolTip from "../Utils/tooltip.js";
 import { navigate } from "@reach/router";
 import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation";
@@ -19,23 +21,13 @@ const Register = () => {
   const firstKeyDown = (event) => {
     if (event.key === "Enter") passwordRef.current.focus();
   };
-  const handleLoginAndResgister = async (url) => {
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        person_name: name,
-        password: password,
-      }),
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const result = handleLoginAndResgister(`${BaseUrl}/register`);
+    const result = await (
+      await handleLoginAndResgister(`${BaseUrl}/register`, name, password)
+    ).json();
 
     if (!result.error) {
       //Login User automatically
@@ -61,6 +53,21 @@ const Register = () => {
       setPassword(e.currentTarget.value);
     }
   };
+  handleToolTip(
+    "register-tool-tip",
+    "register-user-name-input",
+    "register-form"
+  );
+  useEffect(() => {
+    if (document.getElementById("register-tool-tip")) {
+      const setToolTip = document.getElementById("register-tool-tip");
+      if (state.message !== "") setToolTip.textContent = state.message;
+
+      setTimeout(() => {
+        setToolTip.textContent = "";
+      }, 3000);
+    }
+  }, [state.message]);
 
   return (
     <React.Fragment>
@@ -73,6 +80,7 @@ const Register = () => {
         <div className="form-group">
           <label htmlFor="name">USER NAME</label>
           <input
+            id="register-user-name-input"
             className="form-control"
             value={name}
             onChange={handleChange}
@@ -83,8 +91,8 @@ const Register = () => {
             onKeyDown={firstKeyDown}
             ref={userNameRef}
           />
-          {state.message}
         </div>
+        <div />
         <div className="form-group">
           <label htmlFor="password">PASSWORD</label>
           <input
