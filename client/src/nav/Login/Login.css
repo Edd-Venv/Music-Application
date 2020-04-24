@@ -5,6 +5,15 @@
   background-color: rgb(218, 213, 213);
 }
 
+.pop-up {
+  color: rgb(235, 44, 44);
+  text-align: center;
+  border-radius: 6px;
+  background-color: rgb(46, 45, 45);
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
 @media (min-width: 320px) {
   #login-form {
     width: 80vw;
