@@ -30,8 +30,6 @@ function Search() {
   };
 
   const handleHideArtistInfoButton = () => {
-    if (document.getElementById("search-result-audio-player") !== null)
-      document.getElementById("search-result-audio-player").play();
     hanldeAristInfoButtonAndBackDrop();
   };
 
