@@ -63,7 +63,10 @@ function Top5Tracks(props) {
                   </div>
                   <div className="col-md-8">
                     <div className="card-body" style={{ marginLeft: "3%" }}>
-                      <h5 className="card-title">
+                      <h5
+                        className="card-title"
+                        style={{ fontFamily: "Oswald, sans-serif" }}
+                      >
                         <big>
                           <strong>{track.title}</strong>
                         </big>

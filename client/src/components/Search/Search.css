@@ -45,6 +45,7 @@ img {
   outline: 0;
   width: 17vw;
   font-size: 1.2em;
+  font-family: "Roboto Condensed", sans-serif;
 }
 #input:hover {
   animation-name: input-border-effect;

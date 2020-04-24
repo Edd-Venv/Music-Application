@@ -37,6 +37,7 @@
 }
 #header-card-font {
   font-size: 1.6rem;
+  font-family: "Roboto Condensed", sans-serif;
 }
 @media (min-width: 320px) {
   .dummy-button {

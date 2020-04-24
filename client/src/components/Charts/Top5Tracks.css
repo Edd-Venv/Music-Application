@@ -42,6 +42,7 @@ div.hide-top-5-audio-button {
     margin-left: 8%;
   }
   .top-5-tracks-container {
+    font-family: "Roboto Condensed", sans-serif;
     max-width: 44vw;
     font-size: 1.5rem;
   }
@@ -111,7 +112,7 @@ div.hide-top-5-audio-button {
   }
   .top-5-tracks-container {
     max-width: 28vw;
-    font-size: 1.55rem;
+    font-size: 1.7rem;
   }
 }
 @media (min-width: 1440px) {
@@ -124,7 +125,7 @@ div.hide-top-5-audio-button {
   }
   .top-5-tracks-container {
     max-width: 35vw;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }
 @media (min-width: 2500px) {
