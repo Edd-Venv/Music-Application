@@ -191,6 +191,7 @@ div.hide-music-button {
   }
   #search-result-audio-player {
     width: 88vw;
+    outline: none;
   }
   .search-result-buttons-container {
     margin-left: 5%;
