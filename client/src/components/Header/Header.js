@@ -25,8 +25,6 @@ function Header() {
       setCardContent({
         ...cardContent,
         message: "You need to login to Save.",
-        musicAudioButtonClicked: false,
-        displayAudioButton: "show-music-button",
       });
     else {
       const result = await (
@@ -53,8 +51,6 @@ function Header() {
           ...cardContent,
           key: result.key,
           message: result.message,
-          musicAudioButtonClicked: false,
-          displayAudioButton: "show-music-button",
         });
       } else {
         setCardContent({ message: result.error });
@@ -62,35 +58,40 @@ function Header() {
     }
   }
 
-  async function musicAudioButton(Args) {
-    const result = await (
-      await fetch(`${BaseUrl}/buttonUI`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          song_key: Args[0],
-          music_audio_button_click: Args[1],
-        }),
-      })
-    ).json();
+  const handleAudioPlayer = (...Args) => {
+    if (!document.getElementById("header-card-audio-tag-" + Args[0])) {
+      const audioPlayer = document.createElement("audio");
+      audioPlayer.id = "header-card-audio-tag-" + Args[0];
+      audioPlayer.className = "header-card-audio-player";
 
-    if (!result.error) {
-      setCardContent({
-        ...cardContent,
-        key: result.key,
-        message: "Save",
-        musicAudioButtonClicked: result.musicAudioButtonClicked,
-        displayAudioButton: "show-music-button",
-      });
-      if (timeOut) {
-        clearTimeout(timeOut);
+      const headerCard = document.getElementById(`header-card-${Args[0]}`);
+      headerCard.style.borderBottomLeftRadius = 31.5 + "px";
+      headerCard.style.borderBottomRightRadius = 31.5 + "px";
+
+      if (document.getElementById("header-card-div-" + Args[0])) {
+        const hostElement = document.getElementById(
+          "header-card-div-" + Args[0]
+        );
+        hostElement.appendChild(audioPlayer);
+
+        audioPlayer.style.position = "absolute";
+        audioPlayer.style.left = 0 + "px";
+        audioPlayer.style.top = 36 + "px";
+        audioPlayer.src = Args[2];
+        audioPlayer.volume = "0.5";
+        audioPlayer.controls = true;
       }
-    } else {
-      console.log("message", result.error);
     }
-  }
+    setCardContent({
+      ...cardContent,
+      key: Args[0],
+      message: "Save",
+      musicAudioButtonClicked: Args[1],
+    });
+    if (timeOut) {
+      clearTimeout(timeOut);
+    }
+  };
 
   useEffect(() => {
     if (cardContent.message !== "Save") {
@@ -178,7 +179,7 @@ function Header() {
         state={cardContent}
         handleClose={handleClose}
         saveSong={saveSong}
-        musicAudioButton={musicAudioButton}
+        handleAudioPlayer={handleAudioPlayer}
       />
     </React.Fragment>
   );
