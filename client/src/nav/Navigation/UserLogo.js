@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext, BaseUrl } from "../../App.js";
-import { GoGear, GoPerson } from "react-icons/go";
+import { GoPerson } from "react-icons/go";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
