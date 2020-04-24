@@ -6,6 +6,8 @@
   min-width: 40%;
 }
 .current-top-three-artists-heading {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.25rem;
   font-size: 1.8rem;
   font-weight: bolder;
   text-align: center;
@@ -14,6 +16,8 @@
   margin: 0 auto;
 }
 .top-5-albums-heading {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.2rem;
   font-size: 1.5rem;
   font-weight: bolder;
   margin-left: 13%;
@@ -21,6 +25,8 @@
   color: white;
 }
 .top-5-tracks-heading {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.2rem;
   font-size: 1.5rem;
   font-weight: bolder;
   margin-left: 12%;

@@ -24,7 +24,10 @@ function Top5Albums(props) {
                   </div>
                   <div className="col-md-8">
                     <div className="card-body" id="top-5-albums-fonts">
-                      <h5 className="card-title">
+                      <h5
+                        className="card-title"
+                        style={{ fontFamily: "Oswald, sans-serif" }}
+                      >
                         <big>
                           <strong>{album.title}</strong>
                         </big>

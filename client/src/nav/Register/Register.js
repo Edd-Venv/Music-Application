@@ -90,6 +90,7 @@ const Register = () => {
             required
             onKeyDown={firstKeyDown}
             ref={userNameRef}
+            style={{ fontFamily: "Roboto Condensed, sans-serif" }}
           />
         </div>
         <div />
