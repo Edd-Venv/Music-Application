@@ -8,19 +8,23 @@ function Top5Tracks(props) {
   });
 
   const handleAudioPlayer = (...Args) => {
-    if (!document.getElementById("audio-tag-" + Args[0])) {
+    if (!document.getElementById("top-5-tracks-audio-tag-" + Args[0])) {
       const audioPlayer = document.createElement("audio");
-      audioPlayer.id = "audio-tag-" + Args[0];
+      audioPlayer.id = "top-5-tracks-audio-tag-" + Args[0];
       audioPlayer.className = "top-5-tracks-audio-player";
 
-      if (document.getElementById("audio-tag-" + state.key)) {
+      if (document.getElementById("top-5-tracks-audio-tag-" + state.key)) {
         document
-          .getElementById("div-" + state.key)
-          .removeChild(document.getElementById("audio-tag-" + state.key));
+          .getElementById("top-5-tracks-div-" + state.key)
+          .removeChild(
+            document.getElementById("top-5-tracks-audio-tag-" + state.key)
+          );
       }
 
-      if (document.getElementById("div-" + Args[0])) {
-        const hostElement = document.getElementById("div-" + Args[0]);
+      if (document.getElementById("top-5-tracks-div-" + Args[0])) {
+        const hostElement = document.getElementById(
+          "top-5-tracks-div-" + Args[0]
+        );
         hostElement.appendChild(audioPlayer);
 
         audioPlayer.style.position = "absolute";
@@ -79,7 +83,7 @@ function Top5Tracks(props) {
                   <div
                     className="col-md-4"
                     style={{ marginLeft: "15px" }}
-                    id={"div-" + track.id}
+                    id={"top-5-tracks-div-" + track.id}
                   >
                     {track.id === state.key ? (
                       <button
