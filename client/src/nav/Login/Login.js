@@ -94,6 +94,7 @@ const Login = (props) => {
               required
               ref={userNameRef}
               onKeyDown={firstKeyDown}
+              style={{ fontFamily: "Roboto Condensed, sans-serif" }}
             />
           </div>
           <div />
