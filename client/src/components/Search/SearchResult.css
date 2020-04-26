@@ -78,7 +78,7 @@
   grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
 }
 
-#search-result-item:hover {
+.search-result-grid-card:hover {
   box-shadow: 0px 1px 9px whitesmoke;
   opacity: 0.8 grey;
   transition: 0.2s;
