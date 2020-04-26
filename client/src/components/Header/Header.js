@@ -67,6 +67,13 @@ function Header() {
       const headerCard = document.getElementById(`header-card-${Args[0]}`);
       headerCard.style.borderBottomLeftRadius = 31.5 + "px";
       headerCard.style.borderBottomRightRadius = 31.5 + "px";
+      headerCard.style.borderTopRightRadius = 31.5 + "px";
+      headerCard.style.backgroundColor = "#F2F3F6";
+      const headerCardImg = document.getElementById(
+        `header-card-img-${Args[0]}`
+      );
+
+      headerCardImg.style.borderTopRightRadius = 31.5 + "px";
 
       if (document.getElementById("header-card-div-" + Args[0])) {
         const hostElement = document.getElementById(

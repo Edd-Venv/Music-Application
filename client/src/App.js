@@ -20,6 +20,7 @@ function App() {
     });
     // Clear user from context
     setUser({});
+    if (localStorage.getItem("userName")) localStorage.removeItem("userName");
     navigate("/");
   };
 
@@ -35,9 +36,12 @@ function App() {
           },
         })
       ).json();
-      setUser({
-        accesstoken: result.accesstoken,
-      });
+      if (result.accesstoken && !localStorage.getItem("userName"))
+        logOutCallback();
+      else
+        setUser({
+          accesstoken: result.accesstoken,
+        });
       setLoading(false);
     }
     checkRefreshToken();

@@ -14,16 +14,16 @@ div.hide-music-button {
   margin-top: 3%;
 }
 
-#my-songs-item:hover {
+.gird-card-size:hover {
   box-shadow: 0px 1px 9px whitesmoke;
   opacity: 0.8 grey;
   transition: 0.2s;
   transform: translate(1px, -5px);
 }
-
 @media (min-width: 320px) {
   .gird-card-size {
     width: 90vw;
+    font-family: "Roboto Condensed", sans-serif;
   }
   #my-songs-audio-player {
     width: 88vw;
