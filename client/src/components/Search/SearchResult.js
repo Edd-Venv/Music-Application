@@ -88,6 +88,19 @@ function SearchResult(props) {
       if (timeOut) {
         clearTimeout(timeOut);
       }
+
+      if (document.getElementById("search-result-item-" + state.key)) {
+        const searchResultItem = document.getElementById(
+          "search-result-item-" + state.key
+        );
+        searchResultItem.style.backgroundColor = "#ffffff";
+      }
+      if (document.getElementById("search-result-item-" + Args[0])) {
+        const searchResultItem = document.getElementById(
+          "search-result-item-" + Args[0]
+        );
+        searchResultItem.style.backgroundColor = "#f2f3f6";
+      }
     } else {
       console.log("message", result.error);
     }
@@ -165,7 +178,7 @@ function SearchResult(props) {
                     <div
                       className="card mb-3 search-result-grid-card"
                       key={result.id}
-                      id="search-result-item"
+                      id={`search-result-item-${result.id}`}
                     >
                       <div className="row no-gutters">
                         <div className="col-md-4">
