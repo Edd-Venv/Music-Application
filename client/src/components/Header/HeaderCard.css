@@ -39,6 +39,15 @@
   font-size: 1.6rem;
   font-family: "Roboto Condensed", sans-serif;
 }
+@keyframes slide-in {
+  from {
+    transform: translateX(-10rem);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media (min-width: 320px) {
   .dummy-button {
     color: transparent;
@@ -51,6 +60,7 @@
   }
   .header-card {
     width: 75vw;
+    animation: slide-in 0.3s ease-out forwards;
   }
   .header-card-audio-player {
     width: 74vw;

@@ -135,7 +135,7 @@ server.post("/refresh_token", async (req, res) => {
   // We have a token, let's verify it!
   let payload = null;
   try {
-    payload = verify(token, process.env.REFRESH_TOKEN_SECRET);
+    payload = verify(token, "EDWINRULESEVENMORE");
   } catch (err) {
     return res.send({ accesstoken: "" });
   }
@@ -176,7 +176,7 @@ server.post("/refresh_token", async (req, res) => {
 });
 
 //Sending Client's UserName
-server.get("/userName", async (req, res, next) => {
+/*server.get("/userName", async (req, res, next) => {
   const userId = isAuth(req);
 
   if (userId !== null) {
@@ -196,7 +196,7 @@ server.get("/userName", async (req, res, next) => {
       res.json({ error: error });
     }
   }
-});
+});*/
 
 //////////////////////////////////////////////SETTINGS///////////////////////////////////////////////////
 
