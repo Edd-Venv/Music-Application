@@ -72,6 +72,18 @@ const MySongs = (props) => {
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
       });
+
+      if (document.getElementById("my-songs-item-" + content.key)) {
+        const mySongsItem = document.getElementById(
+          "my-songs-item-" + content.key
+        );
+        mySongsItem.style.backgroundColor = "#ffffff";
+      }
+
+      if (document.getElementById("my-songs-item-" + Args[0])) {
+        const mySongsItem = document.getElementById("my-songs-item-" + Args[0]);
+        mySongsItem.style.backgroundColor = "#f2f3f6";
+      }
     } else {
       console.log("message", result.error);
     }
@@ -133,7 +145,7 @@ const MySongs = (props) => {
               return (
                 <div
                   className="card mb-3 gird-card-size"
-                  id="my-songs-item"
+                  id={`my-songs-item-${info.song_key}`}
                   key={info.song_key}
                 >
                   <div className="row no-gutters">
@@ -149,7 +161,10 @@ const MySongs = (props) => {
                     </div>
                     <div className="col-md-8">
                       <div className="card-body" style={{ marginLeft: "2%" }}>
-                        <h5 className="card-title">
+                        <h5
+                          className="card-title"
+                          style={{ fontFamily: "Oswald, sans-serif" }}
+                        >
                           <big>
                             <strong>{info.artist_name}</strong>
                           </big>

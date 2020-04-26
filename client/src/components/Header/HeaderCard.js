@@ -32,6 +32,7 @@ const HeaderCard = (props) => {
                   <img
                     src={state.artist.picture_xl}
                     style={{ width: "100%" }}
+                    id={"header-card-img-" + state.id}
                     className="img-thumbnail"
                     alt="..."
                   />
