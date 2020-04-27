@@ -20,7 +20,7 @@ function SearchResult(props) {
     handleShowArtistInfoButton,
   } = props;
 
-  async function saveSong(...Args) {
+  async function saveSong(Args) {
     if (!user.accesstoken) {
       if (timeOut) {
         clearTimeout(timeOut);
@@ -52,7 +52,7 @@ function SearchResult(props) {
 
       if (!result.error) {
         setState({
-          ...state,
+          data: state,
           key: result.key,
           message: result.message,
           musicAudioButtonClicked: false,
@@ -109,7 +109,7 @@ function SearchResult(props) {
   useEffect(() => {
     if (state.message !== "Save") {
       timeOut = setTimeout(() => {
-        setState({ ...state, message: "Save" });
+        setState({ data: state, message: "Save" });
       }, 3000);
     }
   }, [state.message]);
@@ -118,10 +118,10 @@ function SearchResult(props) {
     <React.Fragment>
       <br />
       <ArtistInfo
-        results={results}
+        results={results.data}
         handleHideArtistInfoButton={handleHideArtistInfoButton}
       />
-      {results === undefined ? (
+      {results.data === undefined ? (
         <div>
           <p className="error-paragraph">
             ARTIST NOT IN DATABASE
@@ -137,7 +137,7 @@ function SearchResult(props) {
               ×
             </div>
             <div className="artist-info-button-container">
-              {results.video[0].Type === "unknown" ? null : (
+              {results.data.video[0].Type === "unknown" ? null : (
                 <button
                   className="btn btn-dark"
                   onClick={handleShowArtistInfoButton}
@@ -162,7 +162,7 @@ function SearchResult(props) {
             <br />
             <br />
             <div className="search-results-container">
-              {results.songs[0].DummyData ? (
+              {results.data.songs[0].DummyData ? (
                 <div style={{ display: "flex", minWidth: "1000px" }}>
                   <div
                     className="spinner-grow text-dark"
@@ -173,7 +173,7 @@ function SearchResult(props) {
                   </div>
                 </div>
               ) : (
-                results.songs.map((result) => {
+                results.data.songs.map((result) => {
                   return (
                     <div
                       className="card mb-3 search-result-grid-card"
@@ -218,16 +218,15 @@ function SearchResult(props) {
                         <div className="col-md-4 search-result-buttons-container">
                           <button
                             className="btn btn-primary"
-                            onClick={saveSong.bind(
-                              this,
+                            onClick={saveSong.bind(this, [
                               result.id,
                               result.artist.name,
                               result.artist.picture_xl,
                               result.title,
                               result.album.title,
                               result.explicit_lyrics,
-                              result.preview
-                            )}
+                              result.preview,
+                            ])}
                           >
                             {result.id === state.key ? state.message : "Save"}
                           </button>

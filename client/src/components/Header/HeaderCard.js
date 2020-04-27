@@ -23,16 +23,16 @@ const HeaderCard = (props) => {
           </p>
           <div
             className="card mb-3 header-card"
-            id={"header-card-" + state.id}
-            key={state.id}
+            id={"header-card-" + state.data.id}
+            key={state.data.id}
           >
             <div className="row no-gutters">
               <div className="col-md-4">
                 <div id="header-artist-image">
                   <img
-                    src={state.artist.picture_xl}
+                    src={state.data.artist.picture_xl}
                     style={{ width: "100%" }}
-                    id={"header-card-img-" + state.id}
+                    id={"header-card-img-" + state.data.id}
                     className="img-thumbnail"
                     alt="..."
                   />
@@ -45,16 +45,16 @@ const HeaderCard = (props) => {
                     style={{ fontFamily: "Oswald, sans-serif" }}
                   >
                     <big>
-                      <strong>{state.artist.name}</strong>
+                      <strong>{state.data.artist.name}</strong>
                     </big>
                   </h5>
                   <div className="card-text">
-                    <p>Song: {state.title}</p>
-                    <p>Album: {state.album.title}</p>
+                    <p>Song: {state.data.title}</p>
+                    <p>Album: {state.data.album.title}</p>
                     <p>
                       <small className="text-muted">
                         Explicit Lyrics:{" "}
-                        {state.explicit_lyrics === true ? "Yes" : "No"}
+                        {state.data.explicit_lyrics === true ? "Yes" : "No"}
                       </small>
                     </p>
                   </div>
@@ -62,24 +62,23 @@ const HeaderCard = (props) => {
               </div>
               <div
                 className="col-md-4 header-card-buttons-container"
-                id={"header-card-div-" + state.id}
+                id={"header-card-div-" + state.data.id}
               >
                 <button
                   className="btn btn-primary"
-                  onClick={saveSong.bind(
-                    this,
-                    state.id,
-                    state.artist.name,
-                    state.artist.picture_xl,
-                    state.title,
-                    state.album.title,
-                    state.explicit_lyrics,
-                    state.preview
-                  )}
+                  onClick={saveSong.bind(this, [
+                    state.data.id,
+                    state.data.artist.name,
+                    state.data.artist.picture_xl,
+                    state.data.title,
+                    state.data.album.title,
+                    state.data.explicit_lyrics,
+                    state.data.preview,
+                  ])}
                 >
                   {state.message ? state.message : "Save"}
                 </button>
-                <div id={"header-card-div-" + state.id} />
+                <div id={"header-card-div-" + state.data.id} />
                 {state.musicAudioButtonClicked === true ? (
                   <button className="dummy-button btn">
                     Preview Song
@@ -89,12 +88,11 @@ const HeaderCard = (props) => {
                   <div className={state.displayAudioButton}>
                     <button
                       className="btn btn-dark"
-                      onClick={handleAudioPlayer.bind(
-                        this,
-                        state.id,
+                      onClick={handleAudioPlayer.bind(this, [
+                        state.data.id,
                         true,
-                        state.preview
-                      )}
+                        state.data.preview,
+                      ])}
                     >
                       Preview Song
                       <i className="fab fa-google-play" />
