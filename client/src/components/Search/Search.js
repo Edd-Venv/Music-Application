@@ -5,9 +5,10 @@ import SearchResult from "./SearchResult.js";
 import { BaseUrl } from "../../App.js";
 
 function Search() {
-  const [state, setState] = useState({ ...initialState });
+  const data = Object.assign({}, initialState);
+  const [state, setState] = useState({ data });
   const handleResultsCloseButton = () => {
-    setState({ ...initialState });
+    setState({ data });
     document.getElementById("search-results-model").style.display = "none";
   };
 
@@ -48,7 +49,7 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
-          setState({ ...Data });
+          setState({ data: Data });
         });
     })();
   };

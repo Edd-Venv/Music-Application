@@ -11,7 +11,7 @@ function Header() {
   });
 
   const [cardContent, setCardContent] = useState({
-    ...DummyData,
+    data: DummyData,
     isLoaded: false,
     key: 0,
     message: "Save",
@@ -20,10 +20,12 @@ function Header() {
 
   let timeOut;
 
-  async function saveSong(...Args) {
+  async function saveSong(Args) {
     if (!user.accesstoken)
       setCardContent({
-        ...cardContent,
+        data: cardContent.data,
+        key: cardContent.key,
+        musicAudioButtonClicked: cardContent.musicAudioButtonClicked,
         message: "You need to login to Save.",
       });
     else {
@@ -48,7 +50,8 @@ function Header() {
 
       if (!result.error) {
         setCardContent({
-          ...cardContent,
+          data: cardContent.data,
+          musicAudioButtonClicked: cardContent.musicAudioButtonClicked,
           key: result.key,
           message: result.message,
         });
@@ -58,7 +61,7 @@ function Header() {
     }
   }
 
-  const handleAudioPlayer = (...Args) => {
+  const handleAudioPlayer = (Args) => {
     if (!document.getElementById("header-card-audio-tag-" + Args[0])) {
       const audioPlayer = document.createElement("audio");
       audioPlayer.id = "header-card-audio-tag-" + Args[0];
@@ -90,7 +93,7 @@ function Header() {
       }
     }
     setCardContent({
-      ...cardContent,
+      data: cardContent.data,
       key: Args[0],
       message: "Save",
       musicAudioButtonClicked: Args[1],
@@ -103,14 +106,23 @@ function Header() {
   useEffect(() => {
     if (cardContent.message !== "Save") {
       timeOut = setTimeout(() => {
-        setCardContent({ ...cardContent, message: "Save" });
+        setCardContent({
+          data: cardContent.data,
+          message: "Save",
+          key: cardContent.key,
+          musicAudioButtonClicked: cardContent.musicAudioButtonClicked,
+        });
       }, 3000);
     }
   }, [cardContent.message]);
 
   const showHeaderCard = (data) => {
     if (document.getElementById("header-card") !== null) {
-      setCardContent({ ...data, message: "Save" });
+      setCardContent({
+        data: data,
+        message: "Save",
+        displayAudioButton: "show-music-button",
+      });
       document.getElementById("header-card").style.display = "block";
 
       const audios = document.getElementsByTagName("audio");
@@ -120,7 +132,7 @@ function Header() {
     }
   };
   const handleClose = () => {
-    setCardContent({ ...DummyData, message: "Save" });
+    setCardContent({ data: DummyData, message: "Save" });
     document.getElementById("header-card").style.display = "none";
   };
 
@@ -136,7 +148,7 @@ function Header() {
         });
       });
   }, []);
-
+  //console.log(cardContent);
   return (
     <React.Fragment>
       {state.isLoaded === false ? null : (

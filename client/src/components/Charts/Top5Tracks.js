@@ -60,12 +60,8 @@ function Top5Tracks(props) {
         ? null
         : tracks.map((track) => {
             return (
-              <div id="top-5-chart-card">
-                <div
-                  className="card mb-3"
-                  key={track.id}
-                  id={`top-5-chart-card-${track.id}`}
-                >
+              <div key={track.id} id="top-5-chart-card">
+                <div className="card mb-3" id={`top-5-chart-card-${track.id}`}>
                   <div className="row no-gutters">
                     <div className="col-md-4">
                       <div className="top-5-tracks-image-container">
