@@ -32,7 +32,7 @@ const Register = () => {
     if (!result.error) {
       //Login User automatically
       const secondResult = await (
-        await handleLoginAndResgister(`${BaseUrl}/login`)
+        await handleLoginAndResgister(`${BaseUrl}/login`, name, password)
       ).json();
 
       if (secondResult.accesstoken) {
