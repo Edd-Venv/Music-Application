@@ -11,6 +11,7 @@ const MySongs = (props) => {
   });
 
   async function fetchSongs() {
+    if (!user.accesstoken) return;
     const result = await (
       await fetch(`${BaseUrl}/MySongs`, {
         method: "GET",
@@ -67,7 +68,7 @@ const MySongs = (props) => {
 
     if (!result.error) {
       setContent({
-        ...content,
+        data: content.data,
         key: result.key,
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
