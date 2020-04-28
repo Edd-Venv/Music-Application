@@ -7,7 +7,7 @@ function Top5Tracks(props) {
     buttonDisplay: "show-top-5-audio-button",
   });
 
-  const handleAudioPlayer = (...Args) => {
+  const handleAudioPlayer = (Args) => {
     if (!document.getElementById("top-5-tracks-audio-tag-" + Args[0])) {
       const audioPlayer = document.createElement("audio");
       audioPlayer.id = "top-5-tracks-audio-tag-" + Args[0];
@@ -114,11 +114,10 @@ function Top5Tracks(props) {
                         <div className={state.buttonDisplay}>
                           <button
                             className="btn btn-dark"
-                            onClick={handleAudioPlayer.bind(
-                              this,
+                            onClick={handleAudioPlayer.bind(this, [
                               track.id,
-                              track.preview
-                            )}
+                              track.preview,
+                            ])}
                           >
                             Preview Song
                             <i className="fab fa-google-play" />
