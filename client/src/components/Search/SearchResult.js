@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./SearchResult.css";
+import { changeBackGroundColor } from "./Utils.js";
 import { UserContext } from "../../App.js";
 import ArtistInfo from "./ArtistInfo.js";
 import { BaseUrl } from "../../App.js";
@@ -85,22 +86,13 @@ function SearchResult(props) {
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
       });
+
       if (timeOut) {
         clearTimeout(timeOut);
       }
 
-      if (document.getElementById("search-result-item-" + state.key)) {
-        const searchResultItem = document.getElementById(
-          "search-result-item-" + state.key
-        );
-        searchResultItem.style.backgroundColor = "#ffffff";
-      }
-      if (document.getElementById("search-result-item-" + Args[0])) {
-        const searchResultItem = document.getElementById(
-          "search-result-item-" + Args[0]
-        );
-        searchResultItem.style.backgroundColor = "#f2f3f6";
-      }
+      changeBackGroundColor(state.key, "#ffffff");
+      changeBackGroundColor(Args[0], "#f2f3f6");
     } else {
       console.log("message", result.error);
     }
@@ -110,6 +102,7 @@ function SearchResult(props) {
     if (state.message !== "Save") {
       timeOut = setTimeout(() => {
         setState({ data: state, message: "Save" });
+        changeBackGroundColor(state.key, "#ffffff");
       }, 3000);
     }
   }, [state.message]);
@@ -117,10 +110,12 @@ function SearchResult(props) {
   return (
     <React.Fragment>
       <br />
-      <ArtistInfo
-        results={results.data}
-        handleHideArtistInfoButton={handleHideArtistInfoButton}
-      />
+      {results.data.video[0].wTeaser ? (
+        <ArtistInfo
+          results={results.data}
+          handleHideArtistInfoButton={handleHideArtistInfoButton}
+        />
+      ) : null}
       {results.data === undefined ? (
         <div>
           <p className="error-paragraph">

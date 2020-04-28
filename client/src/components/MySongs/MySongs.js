@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Navigation from "../../nav/Navigation/Navigation.js";
 import { UserContext, BaseUrl } from "../../App.js";
+import { changeBackGroundColor } from "./Utils.js";
 import "./MySongs.css";
 
 const MySongs = (props) => {
@@ -73,18 +74,8 @@ const MySongs = (props) => {
         musicAudioButtonClicked: result.musicAudioButtonClicked,
         displayAudioButton: "show-music-button",
       });
-
-      if (document.getElementById("my-songs-item-" + content.key)) {
-        const mySongsItem = document.getElementById(
-          "my-songs-item-" + content.key
-        );
-        mySongsItem.style.backgroundColor = "#ffffff";
-      }
-
-      if (document.getElementById("my-songs-item-" + Args[0])) {
-        const mySongsItem = document.getElementById("my-songs-item-" + Args[0]);
-        mySongsItem.style.backgroundColor = "#f2f3f6";
-      }
+      changeBackGroundColor(content.key, "#ffffff");
+      changeBackGroundColor(Args[0], "#f2f3f6");
     } else {
       console.log("message", result.error);
     }
