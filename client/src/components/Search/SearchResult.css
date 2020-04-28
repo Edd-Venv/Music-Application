@@ -204,6 +204,7 @@ div.hide-music-button {
   }
   .search-result-grid-card {
     width: 90vw;
+    background-color: ivory;
   }
 
   #search-result-font-size {

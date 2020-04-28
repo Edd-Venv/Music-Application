@@ -24,6 +24,7 @@ div.hide-music-button {
   .gird-card-size {
     width: 90vw;
     font-family: "Roboto Condensed", sans-serif;
+    background-color: ivory;
   }
   #my-songs-audio-player {
     width: 88vw;

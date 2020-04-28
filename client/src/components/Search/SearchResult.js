@@ -50,7 +50,7 @@ function SearchResult(props) {
           }),
         })
       ).json();
-
+      changeBackGroundColor(state.key, "#ffffff");
       if (!result.error) {
         setState({
           data: state,
