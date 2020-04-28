@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Top5Tracks from "./Top5Tracks.js";
+import Top5Tracks from "./Top5Tracks/Top5Tracks.js";
 import { BaseUrl } from "../../App.js";
 import "./Chart.css";
-import Top5Albums from "./Top5Albums.js";
+import Top5Albums from "./Top5Albums/Top5Albums.js";
 
 function Chart() {
   const [state, setState] = useState({
