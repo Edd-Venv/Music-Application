@@ -67,7 +67,7 @@ router.get("/MySongs", async (req, res) => {
       });
     }
   } catch (err) {
-    res.redirect("http://localhost:4020/login");
+    res.redirect("http://18.222.115.53:4020/login");
   }
 });
 
