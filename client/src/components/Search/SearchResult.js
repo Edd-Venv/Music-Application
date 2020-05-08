@@ -33,7 +33,7 @@ function SearchResult(props) {
       });
     } else {
       const result = await (
-        await fetch(`${BaseUrl}/search/saveSong`, {
+        await fetch(`${BaseUrl}/song`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
