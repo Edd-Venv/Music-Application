@@ -20,7 +20,11 @@ function App() {
     });
     // Clear user from context
     setUser({});
-    if (localStorage.getItem("userName")) localStorage.removeItem("userName");
+    if (localStorage.getItem("userName")) {
+      localStorage.removeItem("userName");
+      localStorage.setItem("userImage", "default.jpeg");
+    }
+
     navigate("/");
   };
 
@@ -36,14 +40,21 @@ function App() {
           },
         })
       ).json();
+
+      if (!result.accesstoken || !localStorage.getItem("userImage"))
+        localStorage.setItem("userImage", "default.jpeg");
+
       if (result.accesstoken && !localStorage.getItem("userName"))
         logOutCallback();
-      else
+      else if (result.accesstoken && localStorage.getItem("userName")) {
+        localStorage.setItem("userImage", result.userImage);
         setUser({
           accesstoken: result.accesstoken,
         });
+      }
       setLoading(false);
     }
+
     checkRefreshToken();
   }, []);
 
