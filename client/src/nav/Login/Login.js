@@ -40,6 +40,7 @@ const Login = (props) => {
 
     if (result.accesstoken) {
       localStorage.setItem("userName", name);
+      localStorage.setItem("userImage", result.userImage);
       setUser({
         accesstoken: result.accesstoken,
       });

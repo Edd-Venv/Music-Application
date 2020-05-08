@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../App.js";
-import { GoPerson } from "react-icons/go";
 
 const UserLogo = (props) => {
   const [user] = useContext(UserContext);
@@ -26,7 +25,13 @@ const UserLogo = (props) => {
           paddingLeft: "0.5rem",
         }}
       >
-        <GoPerson />
+        <img
+          alt="Logo"
+          id="logoImg"
+          src={require(`../../images/users/${localStorage.getItem(
+            "userImage"
+          )}`)}
+        />
         {name}
       </i>
     </span>
