@@ -30,7 +30,7 @@ function Header() {
       });
     else {
       const result = await (
-        await fetch(`${BaseUrl}/saveSong`, {
+        await fetch(`${BaseUrl}/song`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
