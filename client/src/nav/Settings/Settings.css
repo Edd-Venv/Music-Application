@@ -6,8 +6,22 @@
   font-family: "Roboto Condensed", sans-serif;
 }
 
+#user-input {
+  background-color: white;
+  border-bottom-color: blanchedalmond;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  outline: none;
+  color: black;
+  box-shadow: none;
+  border-bottom-right-radius: initial;
+  border-bottom-left-radius: initial;
+}
+
 @media (min-width: 320px) {
   .form {
+    background-color: rgb(255, 255, 255);
     width: 80vw;
     margin: 0 auto;
     font: 2rem;
