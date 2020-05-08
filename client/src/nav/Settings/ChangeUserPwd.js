@@ -10,8 +10,8 @@ function ChangeUserPwd(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await (
-      await fetch(`${BaseUrl}/settings/changePassword`, {
-        method: "POST",
+      await fetch(`${BaseUrl}/user/password`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${user.accesstoken}`,
@@ -43,13 +43,14 @@ function ChangeUserPwd(props) {
           style={{
             fontFamily: "Oswald, sans-serif",
             textAlign: "center",
-            color: "white",
+            color: "black",
           }}
         >
           CHANGE PASSWORD
         </h3>
-        <label htmlFor="old password">OLD PASSWORD</label>
+        <label htmlFor="old password" />
         <input
+          id="user-input"
           className="form-control"
           value={oldPwd}
           placeholder="Old Password"
@@ -60,8 +61,9 @@ function ChangeUserPwd(props) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="new password">NEW PASSWORD</label>
+        <label htmlFor="new password" />
         <input
+          id="user-input"
           className="form-control"
           name="new password"
           value={newPwd}

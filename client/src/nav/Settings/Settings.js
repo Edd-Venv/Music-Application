@@ -3,24 +3,21 @@ import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
 import ChangeUserName from "./ChangeUserName.js";
 import ChangeUserPwd from "./ChangeUserPwd.js";
+import ChangeUserPhoto from "./ChangeUserPhoto.js";
 
 function Settings(props) {
   const [user] = useContext(UserContext);
 
   const deleteUser = async () => {
-    const result = await (
-      await fetch(`${BaseUrl}/deleteUser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user.accesstoken}`,
-        },
-      })
-    ).json();
+    const result = await fetch(`${BaseUrl}/user`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${user.accesstoken}`,
+      },
+    });
 
-    if (!result.error) {
-      console.log(result.message);
-    } else {
+    if (result.error) {
       console.log(result.error);
     }
 
@@ -30,8 +27,9 @@ function Settings(props) {
   return (
     <React.Fragment>
       <Navigation logOutCallback={props.logOutCallback} />
-      <ChangeUserName logOutCallback={props.logOutCallback} />
-      <ChangeUserPwd logOutCallback={props.logOutCallback} />
+      <ChangeUserPhoto />
+      <ChangeUserName />
+      <ChangeUserPwd />
       <h3 style={{ color: "white" }}>DELETE PROFILE</h3>
       <button className="btn btn-danger" onClick={deleteUser}>
         DELETE USER
