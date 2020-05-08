@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import handleLoginAndResgister from "../Utils/RegisterFunc.js";
+import handleLogin from "../Utils/RegisterFunc.js";
 import handleToolTip from "../Utils/tooltip.js";
 import { navigate } from "@reach/router";
 import { UserContext, BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation";
+import Axios from "axios";
 import "./Register.css";
 
 const Register = () => {
@@ -11,6 +12,7 @@ const Register = () => {
   const [, setUser] = useContext(UserContext);
   const [password, setPassword] = useState("");
   const [state, setState] = useState({ message: "" });
+  const [file, setFile] = useState(null);
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -25,6 +27,27 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    (async function () {
+      if (file) {
+        const formData = new FormData();
+        formData.append("person_name", `${name}`);
+        formData.append("password", `${password}`);
+        formData.append("photo", file, "photo");
+
+        await Axios.post(`${BaseUrl}/register`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        navigate("/login");
+      } else {
+        await handleLogin(`${BaseUrl}/register`, name, password);
+        navigate("/login");
+      }
+    })();
+  };
+  /*
     const result = await (
       await handleLoginAndResgister(`${BaseUrl}/register`, name, password)
     ).json();
@@ -46,12 +69,15 @@ const Register = () => {
       setState({ message: result.error });
     }
   };
-
-  const handleChange = (e) => {
-    if (e.currentTarget.name === "name") {
-      setName(e.currentTarget.value.toUpperCase());
+*/
+  const handleChange = (event) => {
+    if (event.currentTarget.name === "name") {
+      setName(event.currentTarget.value.toUpperCase());
+    } else if (event.currentTarget.name === "password") {
+      setPassword(event.currentTarget.value);
     } else {
-      setPassword(e.currentTarget.value);
+      const blob = new Blob([event.target.files[0]], { type: "image/jpeg" });
+      setFile(blob);
     }
   };
   handleToolTip(
@@ -107,6 +133,16 @@ const Register = () => {
             placeholder="Password"
             required
             ref={passwordRef}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="photo">Add Photo</label>
+          <input
+            onChange={handleChange}
+            type="file"
+            name="photo"
+            id="photo"
+            accept="image/*"
           />
         </div>
         <button type="submit" className="btn btn-primary">

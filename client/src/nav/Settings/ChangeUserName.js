@@ -11,8 +11,8 @@ function ChangeUserName(props) {
     event.preventDefault();
 
     const result = await (
-      await fetch(`${BaseUrl}/settings/changeName`, {
-        method: "POST",
+      await fetch(`${BaseUrl}/user/name`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${user.accesstoken}`,
@@ -46,13 +46,16 @@ function ChangeUserName(props) {
           style={{
             fontFamily: "Oswald, sans-serif",
             textAlign: "center",
-            color: "white",
+            color: "black",
           }}
         >
           CHANGE USER NAME
         </h3>
-        <label htmlFor="old Name">OLD USERNAME</label>
+        <label htmlFor="old Name" />
+
         <input
+          autoComplete="off"
+          id="user-input"
           className="form-control"
           value={oldName}
           type="text/number"
@@ -63,8 +66,10 @@ function ChangeUserName(props) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="new Name">NEW USERNAME</label>
+        <label htmlFor="New Name" />
         <input
+          autoComplete="off"
+          id="user-input"
           className="form-control"
           value={newName}
           type="text/number"
