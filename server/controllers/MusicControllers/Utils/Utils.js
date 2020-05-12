@@ -1,4 +1,24 @@
+const nodemailer = require("nodemailer");
 const Model = require("../../../models/MusicModel/Utils/Utils.js");
+
+exports.sendEmail = async (options) => {
+  const transpoter = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 25,
+    auth: {
+      user: "f7b4cabd429e71",
+      pass: "91a103f2401cff",
+    },
+  });
+  //4516bc3198-1b080c@inbox.mailtrap.io
+  const mailOptions = {
+    from: "Edwin's Support Team <eushibantusupprt@gmail.com>",
+    to: options.email,
+    subject: options.subject,
+    text: options.message,
+  };
+  await transpoter.sendMail(mailOptions);
+};
 
 exports.saveSong = async (req, res, next) => {
   try {
