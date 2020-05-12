@@ -70,7 +70,10 @@ exports.resetPasswordModel = async (req) => {
     `SELECT * FROM person WHERE password_reset_token = '${hashedToken}' `
   );
 
-  if (user.rows[0] === undefined) throw new Error("Reset token has expired!");
+  if (user.rows[0] === undefined) throw new Error("User doesn't exisit.");
+
+  if (!(+user.rows[0].password_reset_expires > Date.now()))
+    throw new Error("Reset token has expired!");
 
   if (+user.rows[0].password_reset_expires > Date.now()) {
     const hashedPassword = await hash(req.body.password, 10);
