@@ -4,6 +4,8 @@ const userSetUpController = require("../../controllers/UserSetUpControllers/User
 
 const router = express.Router();
 
+router.post("/forgotPassword", settingsController.forgotPassword);
+router.patch("/resetPassword/:token", settingsController.resetPassword);
 router.patch("/user/password", settingsController.changeUserPassWord);
 
 router.patch("/user/name", settingsController.changeUserName);
