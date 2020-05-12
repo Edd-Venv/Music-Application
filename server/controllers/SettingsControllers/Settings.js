@@ -1,5 +1,5 @@
 const Model = require("../../models/SettingsModel/Settings.js");
-const Email = require("../MusicControllers/Utils/Utils.js");
+const Email = require("../MusicControllers/Utils/email.js");
 
 exports.changeUserPassWord = async (req, res) => {
   try {
@@ -34,28 +34,23 @@ exports.forgotPassword = async (req, res) => {
       "host"
     )}/resetPassword/${resetToken}`;
 
-    const message = `Forgot your password? Submit your new password to: ${resetURL}.\nIf you didn't forget your password, please ignore this email.`;
+    await new Email(req.body, resetURL).sendPasswordReset();
 
-    await Email.sendEmail({
-      email: req.body.email,
-      subject: "Reset Password",
-      message,
-    });
     res.status(200).json({
       status: "success",
       message: "Token sent to email!",
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ status: "error", error: error.message });
   }
 };
 
 exports.resetPassword = async (req, res) => {
   try {
     await Model.resetPasswordModel(req);
-    res.status(201).json({ message: "Password Reset." });
+    res.status(201).json({ status: "success", message: "Password Reset." });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ status: "error", error: error.message });
   }
 };
 
