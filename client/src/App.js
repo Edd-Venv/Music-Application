@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Router, navigate } from "@reach/router";
+import ForgotPassword from "./nav/ForgotPassword/ForgotPassword.js";
+import ResetPassword from "./nav/ResetPassword/ResetPassword.js";
 import Settings from "./nav/Settings/Settings.js";
 import Register from "./nav/Register/Register.js";
 import Login from "./nav/Login/Login.js";
@@ -62,6 +64,8 @@ function App() {
     <UserContext.Provider value={[user, setUser]}>
       <Router id="router">
         <Settings path="/settings" logOutCallback={logOutCallback} />
+        <ForgotPassword path="/forgotPassword" />
+        <ResetPassword path="/resetPassword/:token" />
         <Login path="/login" />
         <Register path="/register" />
         <MusicApp path="/" loading={loading} logOutCallback={logOutCallback} />
