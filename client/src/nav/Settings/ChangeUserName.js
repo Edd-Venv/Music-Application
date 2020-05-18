@@ -42,46 +42,47 @@ function ChangeUserName(props) {
   return (
     <form onSubmit={handleSubmit} className="card mb-3 form">
       <div className="form-group">
-        <h3
+        <h4
           style={{
             fontFamily: "Oswald, sans-serif",
             textAlign: "center",
-            color: "black",
+            color: "white",
           }}
         >
           CHANGE USER NAME
-        </h3>
-        <label htmlFor="old Name" />
-
-        <input
-          autoComplete="off"
-          id="user-input"
-          className="form-control"
-          value={oldName}
-          type="text/number"
-          name="old Name"
-          placeholder="Old Name"
-          onChange={handleInput}
-          required
-        />
+        </h4>
+        <div style={{ display: "flex", color: "white" }}>
+          <label htmlFor="old Name">OLD USERNAME</label>
+          <input
+            autoComplete="off"
+            className="settings-input form-control"
+            value={oldName}
+            type="text/number"
+            name="old Name"
+            placeholder="Old User Name"
+            onChange={handleInput}
+            required
+          />
+        </div>
       </div>
       <div className="form-group">
-        <label htmlFor="New Name" />
-        <input
-          autoComplete="off"
-          id="user-input"
-          className="form-control"
-          value={newName}
-          type="text/number"
-          name="new Name"
-          placeholder="New Name"
-          onChange={handleInput}
-          required
-        />
+        <div style={{ display: "flex", color: "white" }}>
+          <label htmlFor="New Name">NEW USERNAME</label>
+          <input
+            autoComplete="off"
+            className="settings-input form-control"
+            value={newName}
+            type="text/number"
+            name="new Name"
+            placeholder="New User Name"
+            onChange={handleInput}
+            required
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          SUBMIT
+        </button>
       </div>
-      <button type="submit" className="btn btn-primary">
-        SUBMIT
-      </button>
     </form>
   );
 }

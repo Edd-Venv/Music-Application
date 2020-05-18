@@ -31,7 +31,7 @@ function ChangeUserPhoto() {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit} autoComplete="off">
+    <form className="settings-image" onSubmit={handleSubmit} autoComplete="off">
       <div>
         <img
           alt="Logo"
@@ -40,7 +40,7 @@ function ChangeUserPhoto() {
             "userImage"
           )}`)}
         />
-        <label htmlFor="photo">Choose New Photo</label>
+        <label htmlFor="photo"></label>
         <input
           style={{ outline: "none" }}
           onChange={handleChange}
