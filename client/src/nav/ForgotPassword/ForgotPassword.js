@@ -4,7 +4,7 @@ import { navigate } from "@reach/router";
 import handleToolTip from "../Utils/tooltip.js";
 import { BaseUrl } from "../../App.js";
 import Navigation from "../Navigation/Navigation.js";
-import "../Login/Login.css";
+import "./ForgotPassword.css";
 
 const ForgotPassword = (props) => {
   const [name, setName] = useState("");
@@ -78,12 +78,13 @@ const ForgotPassword = (props) => {
           className="card mb-3"
           onSubmit={handleSubmit}
           id="forgot-password-form"
+          autoComplete="off"
         >
           <div className="form-group">
-            <label htmlFor="name">USER NAME</label>
+            <label htmlFor="name"></label>
             <input
               id="forgot-password-user-name-input"
-              className="form-control"
+              className="forgot-password-inputs form-control"
               value={name}
               onChange={handleChange}
               type="text"
@@ -95,11 +96,10 @@ const ForgotPassword = (props) => {
               style={{ fontFamily: "Roboto Condensed, sans-serif" }}
             />
           </div>
-          <div />
           <div className="form-group">
-            <label htmlFor="email">EMAIL</label>
+            <label htmlFor="email"></label>
             <input
-              className="form-control"
+              className="forgot-password-inputs form-control"
               value={email}
               onChange={handleChange}
               type="text"
@@ -110,9 +110,8 @@ const ForgotPassword = (props) => {
             />
           </div>
 
-          <br />
           <button type="submit" className="btn btn-primary">
-            Send
+            SEND
           </button>
         </form>
       </div>
