@@ -1,11 +1,3 @@
-#login-form {
-  width: 30%;
-  margin: 0 auto;
-  font: 2rem;
-  background-color: rgb(218, 213, 213);
-  font-family: "Oswald", sans-serif;
-}
-
 .pop-up {
   color: rgb(235, 44, 44);
   text-align: center;
@@ -16,11 +8,45 @@
   font-size: 1.4rem;
 }
 @media (min-width: 320px) {
+  #forgot-password-link {
+    color: #ff4545;
+    font-weight: lighter;
+    text-decoration: none;
+    width: 90%;
+  }
   #login-form {
-    width: 80vw;
     margin: 0 auto;
     font: 2rem;
-    margin-top: 5%;
+    margin-top: 10%;
+    width: 70vw;
+    color: #313638;
+    letter-spacing: 0.15rem;
+    background-color: #e8e9eb;
+    font-family: "Oswald", sans-serif;
+  }
+  .login-inputs {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    box-shadow: none;
+    letter-spacing: 0.1rem;
+  }
+  .login-inputs:focus {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    box-shadow: none;
+    color: #313638;
+    border-color: #bada55;
+    border-bottom-width: medium;
   }
 }
 
