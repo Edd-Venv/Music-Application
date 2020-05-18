@@ -44,7 +44,6 @@ exports.registerModel = async (req) => {
         "default.jpeg",
       ]
     );
-    throw new Error("File Not found..", req.file);
   }
 };
 
