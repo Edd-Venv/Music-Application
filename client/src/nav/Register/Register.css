@@ -1,16 +1,46 @@
-#register-form {
-  width: 30%;
-  margin: 0 auto;
-  font: 2rem;
-  background-color: rgb(218, 213, 213);
-  font-family: "Oswald", sans-serif;
+.custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }
+.register-file-input[type="file"] {
+  display: none;
+}
+
 @media (min-width: 320px) {
   #register-form {
-    width: 80vw;
+    width: 72vw;
     margin: 0 auto;
+    margin-top: 10%;
     font: 2rem;
-    margin-top: 5%;
+    color: #313638;
+    letter-spacing: 0.15rem;
+    background-color: #e8e9eb;
+    font-family: "Oswald", sans-serif;
+  }
+  .register-inputs {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    box-shadow: none;
+    letter-spacing: 0.1rem;
+  }
+  .register-inputs:focus {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    box-shadow: none;
+    color: #313638;
+    border-color: #bada55;
+    border-bottom-width: medium;
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import handleLogin from "../Utils/RegisterFunc.js";
+import handleLoginAndRegister from "../Utils/RegisterFunc.js";
 import handleToolTip from "../Utils/tooltip.js";
 import { navigate } from "@reach/router";
 import { UserContext, BaseUrl } from "../../App.js";
@@ -34,42 +34,42 @@ const Register = () => {
         formData.append("password", `${password}`);
         formData.append("photo", file, "photo");
 
-        await Axios.post(`${BaseUrl}/register`, formData, {
+        const register = await Axios.post(`${BaseUrl}/register`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
 
-        navigate("/login");
+        console.log(register.data);
+
+        if (register.data.status === "success") navigate("/login");
       } else {
-        await handleLogin(`${BaseUrl}/register`, name, password);
-        navigate("/login");
+        const register = await (
+          await handleLoginAndRegister(`${BaseUrl}/register`, name, password)
+        ).json();
+
+        if (register.status === "error") {
+          setState({ message: register.error });
+        } else if (register.status === "success") {
+          const result = await (
+            await handleLoginAndRegister(`${BaseUrl}/login`, name, password)
+          ).json();
+
+          if (result.accesstoken) {
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userImage", result.userImage);
+            setUser({
+              accesstoken: result.accesstoken,
+            });
+            navigate("/");
+          } else {
+            setState({ message: result.error });
+          }
+        }
       }
     })();
   };
-  /*
-    const result = await (
-      await handleLoginAndResgister(`${BaseUrl}/register`, name, password)
-    ).json();
 
-    if (!result.error) {
-      //Login User automatically
-      const secondResult = await (
-        await handleLoginAndResgister(`${BaseUrl}/login`, name, password)
-      ).json();
-
-      if (secondResult.accesstoken) {
-        localStorage.setItem("userName", name);
-        setUser({
-          accesstoken: secondResult.accesstoken,
-        });
-        navigate("/");
-      }
-    } else {
-      setState({ message: result.error });
-    }
-  };
-*/
   const handleChange = (event) => {
     if (event.currentTarget.name === "name") {
       setName(event.currentTarget.value.toUpperCase());
@@ -99,16 +99,18 @@ const Register = () => {
   return (
     <React.Fragment>
       <Navigation displayLogin={"dontDisplayLoginForm"} />
-      <form className="card mb-3" onSubmit={handleSubmit} id="register-form">
-        <h3 style={{ textAlign: "center" }}>
-          REGISTER
-          <hr />
-        </h3>
+      <form
+        className="card mb-3"
+        onSubmit={handleSubmit}
+        id="register-form"
+        autoComplete="off"
+      >
+        <h3 style={{ textAlign: "center" }}>REGISTER</h3>
         <div className="form-group">
-          <label htmlFor="name">USER NAME</label>
+          <label htmlFor="name"></label>
           <input
             id="register-user-name-input"
-            className="form-control"
+            className="register-inputs form-control"
             value={name}
             onChange={handleChange}
             type="text"
@@ -122,9 +124,9 @@ const Register = () => {
         </div>
         <div />
         <div className="form-group">
-          <label htmlFor="password">PASSWORD</label>
+          <label htmlFor="password"></label>
           <input
-            className="form-control"
+            className="register-inputs form-control"
             value={password}
             onChange={handleChange}
             type="password"
@@ -136,14 +138,17 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="photo">Add Photo</label>
-          <input
-            onChange={handleChange}
-            type="file"
-            name="photo"
-            id="photo"
-            accept="image/*"
-          />
+          <label htmlFor="photo" className="custom-file-upload">
+            Click To Add Photo ( Optional )
+            <input
+              className="register-file-input"
+              onChange={handleChange}
+              type="file"
+              name="photo"
+              id="photo"
+              accept="image/*"
+            />
+          </label>
         </div>
         <button type="submit" className="btn btn-primary">
           REGISTER
