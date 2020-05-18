@@ -1,4 +1,4 @@
-const handleLogin = async (url, name, password) => {
+const handleLoginAndRegister = async (url, name, password) => {
   return fetch(url, {
     method: "POST",
     headers: {
@@ -10,4 +10,4 @@ const handleLogin = async (url, name, password) => {
     }),
   });
 };
-export default handleLogin;
+export default handleLoginAndRegister;
