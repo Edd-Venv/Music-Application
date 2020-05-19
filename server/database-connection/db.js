@@ -21,18 +21,21 @@ module.exports = pool;
 const http = require("http");
 
   if (true) {
-  server.use(express.static("build"));
-  server.get("/*", (req, res) => {
+  app.use(express.static("build"));
+  app.get("/*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
 }
 
-http.createServer(server).listen(4020);
+http.createServer(app).listen(4020);
 
 
  REMEMEBER TO create a images folder in build/static
+
+ ADD TO CLIENT SIDE NAVIGATION/USERLOGO AND SETTINGS/CHANGEUSERPHOTO
  src={`${BaseUrl}/static/images/${localStorage.getItem("userImage")}`}
 
+ ADD TO CONTROLLER/USERSETUP
   path.resolve(
             __dirname,
             "../../build",
