@@ -11,9 +11,9 @@ module.exports = pool;
 /*
  user: "postgres",
   password: "050993Aurum",
-  host: "booksdb.cu7acqeogeq9.us-east-2.rds.amazonaws.com",
+  host: "musicdb.cu7acqeogeq9.us-east-2.rds.amazonaws.com",
   port: 5432,
-  database: "booksdb"
+  database: "musicdb"
 
   "http://18.222.115.53:4020"
 
