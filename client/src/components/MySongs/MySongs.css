@@ -36,6 +36,9 @@ div.hide-music-button {
   .my-songs-buttons-container {
     margin-left: 5%;
   }
+  .my-songs-container {
+    margin-left: 5vw;
+  }
 }
 @media (min-width: 375px) {
   .gird-card-size {
@@ -50,6 +53,9 @@ div.hide-music-button {
   }
   .my-songs-buttons-container {
     margin-left: 5%;
+  }
+  .my-songs-container {
+    margin-left: 9vw;
   }
 }
 @media (min-width: 425px) {
@@ -66,6 +72,9 @@ div.hide-music-button {
   .my-songs-buttons-container {
     margin-left: 5%;
   }
+  .my-songs-container {
+    margin-left: 10vw;
+  }
 }
 @media (min-width: 768px) {
   .gird-card-size {
@@ -81,6 +90,9 @@ div.hide-music-button {
   }
   .my-songs-buttons-container {
     margin-left: 4%;
+  }
+  .my-songs-container {
+    margin-left: 0vw;
   }
 }
 @media (min-width: 1024px) {
