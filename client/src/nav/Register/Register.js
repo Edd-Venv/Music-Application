@@ -40,8 +40,6 @@ const Register = () => {
           },
         });
 
-        console.log(register.data);
-
         if (register.data.status === "success") navigate("/login");
       } else {
         const register = await (
@@ -85,16 +83,6 @@ const Register = () => {
     "register-user-name-input",
     "register-form"
   );
-  useEffect(() => {
-    if (document.getElementById("register-tool-tip")) {
-      const setToolTip = document.getElementById("register-tool-tip");
-      if (state.message !== "") setToolTip.textContent = state.message;
-
-      setTimeout(() => {
-        setToolTip.textContent = "";
-      }, 3000);
-    }
-  }, [state.message]);
 
   return (
     <React.Fragment>

@@ -59,17 +59,6 @@ const ForgotPassword = (props) => {
     "forgot-password-form"
   );
 
-  useEffect(() => {
-    if (document.getElementById("forgot-password-tool-tip")) {
-      const setToolTip = document.getElementById("forgot-password-tool-tip");
-      if (state.message !== "") setToolTip.textContent = state.message;
-
-      setTimeout(() => {
-        setToolTip.textContent = "";
-      }, 3000);
-    }
-  }, [state.message]);
-
   return (
     <React.Fragment>
       <Navigation />

@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 exports.searchModel = async (req) => {
   const api = `https://api.deezer.com/search?q=${req.body.search_text}`;
-  const videoApi = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=music&info=1&verbose=1&k=341314-MusicApp-1I2LKOB1`;
+  const videoApi = `https://tastedive.com/api/similar?q=${req.body.search_text}&type=music&info=1&verbose=`;
   const apiResult = await (await fetch(api)).json();
   const videoApiResult = await (await fetch(videoApi)).json();
 

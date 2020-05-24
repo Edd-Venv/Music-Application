@@ -9,13 +9,7 @@ function MusicApp(props) {
     <React.Fragment>
       <Navigation logOutCallback={props.logOutCallback} />
       <br />
-      <div
-        style={{
-          maxWidth: "1200px",
-          minWidth: "50%",
-          margin: "0 auto",
-        }}
-      >
+      <div>
         {props.loading ? (
           <div
             className="spinner-grow text-dark"
@@ -35,18 +29,7 @@ function MusicApp(props) {
             <br />
             <Header />
             <br />
-            <h1
-              style={{
-                fontFamily: "Oswald, sans-serif",
-                letterSpacing: "0.25rem",
-                fontSize: "1.8rem",
-                fontWeight: "bolder",
-                textAlign: "center",
-                color: "white",
-              }}
-            >
-              CHARTS
-            </h1>
+            <h1>CHARTS</h1>
             <div style={{ width: "95%" }}>
               <span className="row">
                 <h2 className="top-5-albums-heading">

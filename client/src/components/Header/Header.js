@@ -103,19 +103,6 @@ function Header() {
     }
   };
 
-  useEffect(() => {
-    if (cardContent.message !== "Save") {
-      timeOut = setTimeout(() => {
-        setCardContent({
-          data: cardContent.data,
-          message: "Save",
-          key: cardContent.key,
-          musicAudioButtonClicked: cardContent.musicAudioButtonClicked,
-        });
-      }, 3000);
-    }
-  }, [cardContent.message]);
-
   const showHeaderCard = (data) => {
     if (document.getElementById("header-card") !== null) {
       setCardContent({
@@ -136,19 +123,6 @@ function Header() {
     document.getElementById("header-card").style.display = "none";
   };
 
-  useEffect(() => {
-    fetch(`${BaseUrl}/ChartData`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        setState({
-          isLoaded: true,
-          data: result.ChartData.tracks.slice(5, 8),
-        });
-      });
-  }, []);
-  //console.log(cardContent);
   return (
     <React.Fragment>
       {state.isLoaded === false ? null : (
