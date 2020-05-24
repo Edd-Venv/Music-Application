@@ -4,6 +4,7 @@ import { changeBackGroundColor } from "./Utils.js";
 import { UserContext } from "../../App.js";
 import ArtistInfo from "./ArtistInfo.js";
 import { BaseUrl } from "../../App.js";
+import SearchError from "./SearchError";
 
 function SearchResult(props) {
   let timeOut;
@@ -19,6 +20,7 @@ function SearchResult(props) {
     handleClose,
     handleHideArtistInfoButton,
     handleShowArtistInfoButton,
+    handleCloseErrorBackDrop,
   } = props;
 
   async function saveSong(Args) {
@@ -109,24 +111,18 @@ function SearchResult(props) {
 
   return (
     <React.Fragment>
-      <br />
-      {results.data.video[0].wTeaser ? (
-        <ArtistInfo
-          results={results.data}
-          handleHideArtistInfoButton={handleHideArtistInfoButton}
-        />
-      ) : null}
-      {results.data === undefined ? (
-        <div>
-          <p className="error-paragraph">
-            ARTIST NOT IN DATABASE
-            <i onClick={handleClose} className="close-error">
-              ×
-            </i>
-          </p>
-        </div>
+      <div id="search-error-back-drop" onClick={handleCloseErrorBackDrop} />
+      {results.data.songs.length === 0 ? (
+        <SearchError handleCloseErrorBackDrop={handleCloseErrorBackDrop} />
       ) : (
         <React.Fragment>
+          {results.data.video[0].wTeaser ? (
+            <ArtistInfo
+              results={results.data}
+              handleHideArtistInfoButton={handleHideArtistInfoButton}
+            />
+          ) : null}
+          <br />
           <div id="search-results-model">
             <div onClick={handleClose} className="search-results-close-button">
               ×
