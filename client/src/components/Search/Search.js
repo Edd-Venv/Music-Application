@@ -34,6 +34,27 @@ function Search() {
     hanldeAristInfoButtonAndBackDrop();
   };
 
+  const handleErrorBackDrop = () => {
+    document
+      .getElementById("search-error-back-drop")
+      .classList.toggle("visible");
+  };
+
+  const handleCloseErrorBackDrop = () => {
+    setState({
+      data,
+    });
+
+    if (
+      document
+        .getElementById("search-error-back-drop")
+        .classList.toggle("visible")
+    )
+      document
+        .getElementById("search-error-back-drop")
+        .classList.toggle("visible");
+  };
+
   const handleSearch = (text) => {
     (async function fetchData() {
       await fetch(`${BaseUrl}/search`, {
@@ -49,6 +70,12 @@ function Search() {
           return result.json();
         })
         .then((Data) => {
+          if (Data.songs.length === 0) {
+            handleErrorBackDrop();
+            return setState({ data: { songs: { length: 0 } } });
+          }
+          document.getElementById("search-results-model").style.display =
+            "block";
           setState({ data: Data });
         });
     })();
@@ -62,6 +89,7 @@ function Search() {
         handleClose={handleResultsCloseButton}
         handleShowArtistInfoButton={handleShowArtistInfoButton}
         handleHideArtistInfoButton={handleHideArtistInfoButton}
+        handleCloseErrorBackDrop={handleCloseErrorBackDrop}
       />
     </React.Fragment>
   );

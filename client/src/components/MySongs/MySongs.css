@@ -20,6 +20,28 @@ div.hide-music-button {
   transition: 0.2s;
   transform: translate(1px, -5px);
 }
+
+@keyframes slide-in-slide-out {
+  0% {
+    transform: translateX(-120px);
+  }
+  50% {
+    transform: translateX(130px);
+  }
+  100% {
+    transform: translateX(-120px);
+    color: transparent;
+  }
+}
+#sorted-text {
+  animation-name: slide-in-slide-out;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  margin-left: -120px;
+  width: 60vw;
+  color: black;
+}
 @media (min-width: 320px) {
   .gird-card-size {
     width: 90vw;
@@ -73,10 +95,10 @@ div.hide-music-button {
     margin-left: 5%;
   }
   .my-songs-container {
-    margin-left: 10vw;
+    margin-left: 14.5vw;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .gird-card-size {
     width: 50vw;
     margin-left: 2%;
@@ -92,7 +114,7 @@ div.hide-music-button {
     margin-left: 4%;
   }
   .my-songs-container {
-    margin-left: 0vw;
+    margin-left: 23vw;
   }
 }
 @media (min-width: 1024px) {
@@ -109,6 +131,9 @@ div.hide-music-button {
   .my-songs-buttons-container {
     margin-left: 5.2%;
   }
+  .my-songs-container {
+    margin-left: 8.5vw;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -124,6 +149,9 @@ div.hide-music-button {
   }
   .my-songs-buttons-container {
     margin-left: 4.5%;
+  }
+  .my-songs-container {
+    margin-left: 1.5vw;
   }
 }
 @media (min-width: 1440px) {

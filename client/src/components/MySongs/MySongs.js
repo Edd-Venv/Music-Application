@@ -132,6 +132,9 @@ const MySongs = (props) => {
               value={currentFilterText}
             />
           </div>
+          <p id="sorted-text">
+            <small>Alphabetically Sorted</small>
+          </p>
           <div className="my-songs-container">
             {filteredSongs.map((info) => {
               return (
