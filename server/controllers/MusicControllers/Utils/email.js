@@ -16,7 +16,7 @@ module.exports = class Email {
       auth: {
         user: "apikey",
         pass:
-          "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",
+          "",
       },
     });
   }
