@@ -7,14 +7,14 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.userName;
     this.url = url;
-    this.from = "Edwin's Support Team <eushibantusupprt@gmail.com>";
+    this.from = "Edwin's Support Team";
   }
 
   newTransport() {
     return nodemailer.createTransport({
       service: "SendGrid",
       auth: {
-        user: "apikey",
+        user: "",
         pass:
           "",
       },
